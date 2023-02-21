@@ -1,0 +1,7 @@
+Choose and update logo
+
+Update hero section
+    - Decide on carousel
+    - Change banner font
+        - Fix banner border on mobile
+        - Make text a link to direct to sale site 
