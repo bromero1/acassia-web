@@ -29,8 +29,8 @@ const Navbar = () => {
       backgroundColor={"white"}
       position="fixed"
       top="0"
-      left=""
-      zIndex="0"
+      left="0"
+      zIndex="1"
     >
       {/* Container aligning sections within navbar */}
       <Box

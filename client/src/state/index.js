@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isCartOpen: false,
-  cart: ["ar", "asdfadsf"],
+  cart: [],
   items: [],
 };
 
@@ -47,7 +47,7 @@ export const {
   decreaseCount,
   increaseCount,
   setIsCartOpen,
-  removeFromCart
+  removeFromCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
