@@ -8,9 +8,10 @@ import { setItems } from "../../state";
 const ShoppingList = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("all");
-  const items = useSelector(state.cart.items);
+  const items = useSelector((state) => state.cart.items);
+  console.log("🚀 ~ file: ShoppingList.jsx:12 ~ ShoppingList ~ items:", items)
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  return <div>ShoppingList</div>;
+  return <div><h1>Shopping List</h1></div>;
 };
 
 export default ShoppingList;
