@@ -9,9 +9,31 @@ const ShoppingList = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("all");
   const items = useSelector((state) => state.cart.items);
-  console.log("🚀 ~ file: ShoppingList.jsx:12 ~ ShoppingList ~ items:", items)
+  console.log("🚀 ~ file: ShoppingList.jsx:12 ~ ShoppingList ~ items:", items);
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  return <div><h1>Shopping List</h1></div>;
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  async function getItems() {
+    const items = await fetch(
+      "http://localhost:1337/api/items?populate=image",
+      { method: "GET" }
+    );
+    const itemsJson = await items.json();
+    dispatch(setItems(itemsJson.data));
+  }
+
+  useEffect(() => {
+    getItems()
+  }, []);
+
+  return (
+    <div>
+      <h1>Shopping List</h1>
+    </div>
+  );
 };
 
 export default ShoppingList;

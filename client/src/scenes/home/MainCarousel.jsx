@@ -100,14 +100,14 @@ const MainCarousel = () => {
             margin={isNonMobile ? undefined : "0 auto"}
             maxWidth={isNonMobile ? undefined : "240px"}
           >
-            <Typography color={shades.secondary[200]}>-- NEW ITEMS</Typography>
-            <Typography variant="h1">Summer Sale</Typography>
+            <Typography color={shades.secondary[200]}>NEW ITEMS</Typography>
+            <Typography variant="h1">Mother's Day Sale</Typography>
             <Typography
               fontWeight="bold"
               color={shades.secondary[300]}
               sx={{ textDecoration: "underline" }}
             >
-              Discover More
+              Shop Now
             </Typography>
           </Box>
         </Box>
