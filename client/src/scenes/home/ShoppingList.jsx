@@ -57,8 +57,21 @@ const ShoppingList = () => {
         <Tab label="BEST SELLERS" value="bestSellers"></Tab>
         <Tab label="TOP RATED" value="topRated"></Tab>
         <Tab label="ALL" value="all"></Tab>
-
       </Tabs>
+
+      <Box
+        margin="0 auto"
+        display="grid"
+        gridTemplateColumns="repeat(auto-fill, 300px)"
+        justifyContent="space-around"
+        rowGap="20px"
+        columnGap="1.33%"
+      >
+        {/* {value === "all" &&
+          items.map((item) => (
+            <Item item={item} key={`${item.name}-${item.id}`} />
+          ))} */}
+      </Box>
     </Box>
   );
 };

@@ -13,7 +13,7 @@ const Item = ({ item, width }) => {
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const {
-    pallete: { neutral },
+    palette: { neutral },
   } = useTheme();
 
   const { category, price, name, image } = item.attributes;
@@ -46,7 +46,7 @@ const Item = ({ item, width }) => {
         />
 
         <Box
-          display={isHovered ? "blocked" : "none"}
+          display={isHovered ? "block" : "none"}
           postion="absolute"
           bottom="10%"
           left="0"
@@ -57,7 +57,7 @@ const Item = ({ item, width }) => {
             <Box
               display="flex"
               alignItems="center"
-              backgroundColor={shades.neutral[100]}
+              backgroundColor={shades.neutral.light}
               borderRadius="3px"
             >
               <IconButton onClick={() => (setCount = Math.max(count - 1, 1))}>
