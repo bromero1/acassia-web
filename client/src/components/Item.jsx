@@ -60,7 +60,7 @@ const Item = ({ item, width }) => {
               backgroundColor={shades.neutral.light}
               borderRadius="3px"
             >
-              <IconButton onClick={() => (setCount = Math.max(count - 1, 1))}>
+              <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
                 <RemoveIcon />
               </IconButton>
               <Typography color={shades.primary[300]}>{count}</Typography>
