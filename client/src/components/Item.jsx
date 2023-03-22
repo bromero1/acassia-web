@@ -23,11 +23,12 @@ const Item = ({ item, width }) => {
     data: {
       attributes: {
         formats: {
-          medium: { url },
+          small: { url },
         },
       },
     },
   } = image;
+
 
   return (
     <Box width={width}>
