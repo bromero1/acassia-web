@@ -45,13 +45,15 @@ const Item = ({ item, width }) => {
           style={{ cursor: "pointer" }}
         />
 
+        {/* OVERLAY FOR ADDING TO CART ----- */}
         <Box
           display={isHovered ? "block" : "none"}
           postion="absolute"
-          bottom="10%"
+          bottom="20%"
           left="0"
           width="100%"
           padding="0 5%"
+          zIndex= "99" 
         >
           <Box display="flex" justifyContent="space-between">
             <Box

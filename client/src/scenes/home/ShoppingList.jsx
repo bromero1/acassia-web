@@ -49,7 +49,7 @@ const ShoppingList = () => {
   return (
     <Box width="80%" margin="80px auto">
       <Typography variant="h2" textAlign="center">
-        Take your pick
+        Choose an Experience
       </Typography>
 
       <Tabs onChange={handleChange} value={value} centered>

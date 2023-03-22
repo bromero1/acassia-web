@@ -39,7 +39,7 @@ const CartMenu = () => {
   return (
     <Box //Overlay
       display={isCartOpen ? "block" : "none"}
-      sx={{ backgroundColor: "rgba(0,0,0.4" }}
+      sx={{ backgroundColor: "rgba(163,136,185, .9)" }}
       position="fixed"
       zIndex="10"
       width="100%"
