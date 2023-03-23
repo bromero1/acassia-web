@@ -23,7 +23,7 @@ const Item = ({ item, width }) => {
     data: {
       attributes: {
         formats: {
-          small: { url },
+          large: { url },
         },
       },
     },
