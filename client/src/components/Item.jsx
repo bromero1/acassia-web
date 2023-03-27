@@ -75,7 +75,7 @@ const Item = ({ item, width }) => {
             {/* ADD TO CART BUTTON OVERLAY */}
             <Button
               onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
-              backgroundColor = {shades.primary[300]}
+              // backgroundColor = {shades.primary[300]} does not work
               //color="white"
             >
               ADD TO CART
