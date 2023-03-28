@@ -10,17 +10,16 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        display: "block",
         backgroundColor: shades.primary[300],
         width: "100%",
-        height: "200px",
+        height: "120px",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          alignContent: "center",
           justifyContent: "center",
+          paddingTop: "20px"
         }}
       >
         {/* Facebook Icon -------- */}
@@ -53,7 +52,7 @@ const Footer = () => {
               fontSize: "3rem",
               "&:hover": {
           
-                  "linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)"
+                  color: "#E4405F"
                   
               },
             }}
