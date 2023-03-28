@@ -19,7 +19,7 @@ const Footer = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          paddingTop: "20px"
+          paddingTop: "20px",
         }}
       >
         {/* Facebook Icon -------- */}
@@ -51,16 +51,16 @@ const Footer = () => {
             sx={{
               fontSize: "3rem",
               "&:hover": {
-          
-                  color: "#E4405F"
-                  
+                color: "#E4405F",
               },
             }}
           />
         </IconButton>
 
         {/* WhatsApp Icon --------- */}
-        <IconButton>
+        <IconButton
+          onClick={() => window.open("https://wa.me/15551234567", "_blank")}
+        >
           <WhatsAppIcon
             sx={{ fontSize: "3rem", "&:hover": { color: "#25D366" } }}
           />
