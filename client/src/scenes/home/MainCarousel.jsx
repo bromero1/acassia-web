@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton, useMediaQuery } from "@mui/material";
+import { Box, Typography, IconButton, useMediaQuery, Link } from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
@@ -107,7 +107,8 @@ const MainCarousel = () => {
               color={shades.secondary[300]}
               sx={{ textDecoration: "underline" }}
             >
-              Shop Now
+              <Link color={shades.secondary[300]} href="/sale">Shop Now</Link>
+              
             </Typography>
           </Box>
         </Box>

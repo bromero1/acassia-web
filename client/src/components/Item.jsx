@@ -40,17 +40,17 @@ const Item = ({ item, width }) => {
         <img
           alt={item.name}
           width="300px"
-          heigh="400px"
+          height="400px"
           src={`http://localhost:1337${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", objectFit: "contain" }}
         />
 
         {/* OVERLAY FOR ADDING TO CART ----- */}
         <Box
           display={isHovered ? "block" : "none"}
-          postion="absolute"
-          bottom="20%"
+          position="absolute"
+          bottom="5%"
           left="0"
           width="100%"
           padding="0 5%"
@@ -60,7 +60,7 @@ const Item = ({ item, width }) => {
             <Box
               display="flex"
               alignItems="center"
-              backgroundColor={shades.neutral.light}
+              backgroundColor={shades.neutral[100]}
               borderRadius="3px"
             >
               <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
@@ -75,7 +75,7 @@ const Item = ({ item, width }) => {
             {/* ADD TO CART BUTTON OVERLAY */}
             <Button
               onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
-              // backgroundColor = {shades.primary[300]} does not work
+              sx={{ backgroundColor: shades.primary[300], color: "white" }}
               //color="white"
             >
               ADD TO CART
@@ -84,7 +84,7 @@ const Item = ({ item, width }) => {
         </Box>
       </Box>
       <Box mt="3px">
-        <Typography vairant="subtitle2" color={neutral.dark}>
+        <Typography variant="subtitle2" color={neutral.dark}>
           {category
             .replace(/([A-Z])/g, " $1")
             .replace(/^./, (str) => str.toUpperCase())}
