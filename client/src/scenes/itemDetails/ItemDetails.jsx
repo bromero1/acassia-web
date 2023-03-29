@@ -32,14 +32,26 @@ const ItemDetails = () => {
   }, [itemId]);
 
   return (
+    //Box for the whole item screen
     <Box width="80%" margin="80px auto">
+      {/* Box containing the left(image) and right (item info and actions) */}
       <Box display="flex" flexWrap="wrap" columnGap="40px">
-        <Box backgroundColor="red" width="50"></Box>
-
-        <Box backgroundColor="red">
+        {/* Image box section */}
+        {/* mb when flex starts to wrap  */}
+        <Box flex="1 1 40%" mb="40px" backgroundColor="green">
           <img
+            alt={item.name}
+            width="100%"
+            height="100%"
             src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.url}`}
+            style={{ objectFit: "contain" }}
           />
+        </Box>
+        {/* Right side box containing item info and actions */}
+        <Box backgroundColor={shades.secondary[500]} flex="1 1 40%" >
+          <Typography> {item?.attributes?.name}</Typography>
+          <Typography> {item?.attributes?.longDescription}</Typography>
+          <Typography> {item?.attributes?.price}</Typography>
         </Box>
       </Box>
     </Box>
