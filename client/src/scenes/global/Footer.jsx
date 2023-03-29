@@ -8,7 +8,7 @@ import { shades } from "../../theme";
 const Footer = () => {
   const links = ["", "", "", ""];
   return (
-    <Box mt="100px" backgroundColor={shades.primary[300]} padding="45px 0">
+    <Box  backgroundColor={shades.primary[300]} padding="45px 0">
       <Box
         width="100%"
         display="flex"
