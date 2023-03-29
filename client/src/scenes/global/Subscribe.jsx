@@ -12,15 +12,19 @@ const Subscribe = () => {
     >
       <Box
         display="flex"
-        // padding="60px auto"
         flexDirection="column"
-        width="80%"
+        //width="80%"
+        paddingTop="30px"
+        paddingBottom                                                                                         ="30px"
+        alignItems="center"
       >
-        <Typography variant="h5" color={shades.primary[500]}>
-          Subscribe for deals and new products
+        <Typography variant="h5" color={shades.primary[500]} mb="5px">
+          NEWSLETTER SIGN-UP
         </Typography>
-        <TextField id="filled-basic" label="Email" variant="filled" />
-        <Button variant="contained" onClick={()=>{}}>Submit</Button>
+        <TextField id="filled-basic" label="Email" variant="filled"  />
+        <Button variant="contained"  mt="50px" onClick={() => {}}>
+          Submit
+        </Button>
       </Box>
     </Box>
   );
