@@ -14,32 +14,39 @@ const Footer = () => {
         display="flex"
         justifyContent="space-evenly"
         paddingTop="20px"
-
       >
         {/* Contact Info */}
         <Box>
-          <Typography variant="h5" color={shades.secondary[200]}>Contact Us</Typography>
+          <Typography variant="h5" color={shades.secondary[500]}>
+            Contact Us
+          </Typography>
           <Typography color={shades.secondary[200]}>
-                      Acassia Flowers <br/>
-                      260 2nd Street  <br/>
-                      Chelsea, Mass <br/>
-                      <Link href="mailto:info@acassiaflowers.com">info@acassiaflowers.com</Link>
+            Acassia Flowers <br />
+            260 2nd Street <br />
+            Chelsea, Mass <br />
+            <Link href="mailto:info@acassiaflowers.com">
+              info@acassiaflowers.com
+            </Link>
           </Typography>
         </Box>
 
         {/* Hours of Ops */}
         <Box>
-          <Typography variant="h5" color={shades.secondary[200]}>Hours</Typography>
-          <Typography color={shades.secondary[200]}>
-                      Mon - Fri <br/>
-                      5am - 12pm  <br/>
-                      Sat - Sun <br />
-                      6am - 10am
+          <Typography variant="h5" color={shades.secondary[500]}>
+            Hours
+          </Typography>
+          <Typography color={shades.secondary[100]}>
+            Mon - Fri <br />
+            5am - 12pm <br />
+            Sat - Sun <br />
+            6am - 10am
           </Typography>
         </Box>
         {/* Social Media Icons */}
         <Box>
-          <Typography variant="h5" color={shades.secondary[200]}>Social Media</Typography>
+          <Typography variant="h5" color={shades.secondary[500]}>
+            Social Media
+          </Typography>
           {/* Facebook Icon -------- */}
           <IconButton
             onClick={() =>
