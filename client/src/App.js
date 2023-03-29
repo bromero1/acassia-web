@@ -6,7 +6,7 @@ import ItemDetails from "./scenes/itemDetails/ItemDetails";
 import Checkout from "./scenes/checkout/Checkout";
 import Confirmation from "./scenes/checkout/Confirmation";
 import CartMenu from "./scenes/global/CartMenu";
-
+import Footer from "./scenes/global/Footer";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -23,15 +23,15 @@ function App() {
   return (
     <div className="app">
       <BrowserRouter>
-      <Navbar />
+        <Navbar />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/item/:itemId" element={<ItemDetails />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<Confirmation />} />
-          
         </Routes>
+        <Footer />
         <CartMenu />
       </BrowserRouter>
     </div>
