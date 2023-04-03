@@ -50,7 +50,6 @@ const Navbar = () => {
           alignContent="center"
         >
           <img 
-            objectFit="contain"
             src={logo}
             height="80px"
             />

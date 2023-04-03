@@ -1,6 +1,6 @@
 import { Alert, StepLabel, Step, Stepper, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { Form, Formik, useFormik, Field } from "formik";
-import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 import { shades } from "../../theme";
 import {
@@ -9,48 +9,47 @@ import {
   removeFromCart,
   setIsCartOpen,
 } from "../../state/";
-import { useNavigate } from "react-router-dom";
+import { unstable_useBlocker, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import * as yup from "yup";
 import { validationSchema } from "./schema";
 import { useState } from "react";
 import Shipping from "./Shipping";
 
-const initialValues = {
-  billingAddress: {
-    email: "",
-    firstName: "",
-    lastName: "",
-    street1: "",
-    street2: "",
-    city: "",
-    state: "",
-    zip: "",
-  },
-  shippingAddress: {
-    isSameAsBilling: true,
-    firstName: "",
-    lastName: "",
-    street1: "",
-    street2: "",
-    city: "",
-    state: "",
-    zip: "",
-  },
-};
-
 const handleSubmitForm = () => {};
 
 const Checkout = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const initialValues = {
+    billingAddress: {
+      firstName: "",
+      lastName: "",
+      country: "",
+      street1: "",
+      street2: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    },
+    shippingAddress: {
+      isSameAddress: true,
+      firstName: "",
+      lastName: "",
+      country: "",
+      street1: "",
+      street2: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    },
+    email: "",
+    phoneNumber: "",
+  };
   const cart = useSelector((state) => state.cart.cart);
   const [currentStep, setStep] = useState(0);
   const [isFirst, setFirst] = useState(true);
-  // const formik = useFormik(initialValues)
 
   return (
-    <Box width="80%" height="100vh" backgroundColor={shades.primary[100]}>
+    <Box width="80%" m="40px auto" backgroundColor={shades.primary[100]}>
       <Stepper activeStep={currentStep}>
         <Step>
           <StepLabel>Billing</StepLabel>
@@ -76,18 +75,20 @@ const Checkout = () => {
             handleChange,
             handleSubmit,
             setFieldValue,
-          }) => <form onSubmit={handleSubmit}>
-            {isFirst && (
-              <Shipping 
-                values={values}
-                errors={errors}
-                touched={touched}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                setFieldValue={setFieldValue}
+          }) => (
+            <form onSubmit={handleSubmit}>
+              {isFirst && (
+                <Shipping
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
-            )}
-            </form>}
+              )}
+            </form>
+          )}
         </Formik>
       </Box>
     </Box>
