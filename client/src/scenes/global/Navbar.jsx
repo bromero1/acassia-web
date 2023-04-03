@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
+import logo from "../../assets/logo.svg"
 // Box for container
 // Box to center 3 sections of navbar
 //   - Logo
@@ -25,9 +26,9 @@ const Navbar = () => {
       display="flex"
       alignItems="center"
       width="100%"
-      height="60px"
+      height="80px"
       backgroundColor={"white"}
-      position="fixed"
+      // position="fixed"
       top="0"
       left="0"
       zIndex="1"
@@ -48,7 +49,12 @@ const Navbar = () => {
           color={shades.primary[500]}
           alignContent="center"
         >
-          <Typography sx={{fontSize: "36px"}}>Acassia</Typography>
+          <img 
+            objectFit="contain"
+            src={logo}
+            height="80px"
+            />
+          {/* <Typography sx={{fontSize: "36px"}}>Acassia</Typography> */}
         </Box>
 
         {/* MENU ITEMS */}
