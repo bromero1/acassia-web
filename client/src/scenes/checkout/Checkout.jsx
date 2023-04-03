@@ -12,6 +12,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import * as yup from "yup";
+import { validationSchema } from "./schema";
+import { useState } from "react";
+import Shipping from "./Shipping";
 
 const initialValues = {
   billingAddress: {
@@ -36,44 +39,19 @@ const initialValues = {
   },
 };
 
-const validationSchema = [
-  yup.object().shape({
-    billingAddress: yup.object().shape({
-      firstName: yup.string().required("required"),
-      lastName: yup.string().required("required"),
-      street1: yup.string().required("required"),
-      street2: yup.string(),
-      city: yup.string().required("required"),
-      state: yup.string().required("required"),
-      zip: yup.string().required("required"),
-    }),
-    shippingAddress: yup.object().shape({
-      isSameAsBilling: yup.boolean(),
-      firstName: yup.string().required("required"),
-      lastName: yup.string().required("required"),
-      street1: yup.string().required("required"),
-      street2: yup.string(),
-      city: yup.string().required("required"),
-      state: yup.string().required("required"),
-      zip: yup.string().required("required"),
-    }),
-  }),
-  yup.object().shape({
-    email: yup.string().email().required("required"),
-    phoneNumber: yup.string().required("required"),
-  }),
-];
-
 const handleSubmitForm = () => {};
 
 const Checkout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
+  const [currentStep, setStep] = useState(0);
+  const [isFirst, setFirst] = useState(true);
+  // const formik = useFormik(initialValues)
 
   return (
     <Box width="80%" height="100vh" backgroundColor={shades.primary[100]}>
-      <Stepper>
+      <Stepper activeStep={currentStep}>
         <Step>
           <StepLabel>Billing</StepLabel>
         </Step>
@@ -84,31 +62,34 @@ const Checkout = () => {
           <StepLabel>Payment</StepLabel>
         </Step>
       </Stepper>
-
-      <Formik
-        onSubmit={handleSubmitForm}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-      >
-        <Form>
-        <label htmlFor="firstName">First Name</label>
-        <Field id="firstName" name="firstName" placeholder="Jane" />
-
-        <label htmlFor="lastName">Last Name</label>
-        <Field id="lastName" name="lastName" placeholder="Doe" />
-
-        <label htmlFor="email">Email</label>
-        <Field
-          id="email"
-          name="email"
-          placeholder="jane@acme.com"
-          type="email"
-        />
-        <Typography variant="h1">Hello</Typography>
-        <button type="submit">Submit</button>
-        </Form>
-        
-      </Formik>
+      <Box>
+        <Formik
+          onSubmit={handleSubmitForm}
+          initialValues={initialValues}
+          validationSchema={validationSchema[currentStep]}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            setFieldValue,
+          }) => <form onSubmit={handleSubmit}>
+            {isFirst && (
+              <Shipping 
+                values={values}
+                errors={errors}
+                touched={touched}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                setFieldValue={setFieldValue}
+                />
+            )}
+            </form>}
+        </Formik>
+      </Box>
     </Box>
   );
 };
