@@ -91,7 +91,7 @@ const CartMenu = () => {
                         <CloseIcon />
                       </IconButton>
                     </FlexBox>
-                    <Typography>{item.attributes.shortDesctiption}</Typography>
+                    <Typography>{item.attributes.shortDescription}</Typography>
 
                     {/* CHANGE ITEM AMOUNTS */}
                     <FlexBox m="15px 0">
@@ -109,7 +109,7 @@ const CartMenu = () => {
                         </IconButton>
                         <Typography>{item.count}</Typography>
                         <IconButton
-                          onClick={() => increaseCount({ id: item.id })}
+                          onClick={() => dispatch(increaseCount({ id: item.id }))}
                         >
                           <AddIcon />
                         </IconButton>
@@ -142,8 +142,8 @@ const CartMenu = () => {
                 margin: "20px 0",
               }}
               onClick={() => {
+                dispatch(setIsCartOpen({}));
                 navigate("/checkout");
-                setIsCartOpen({});
               }}
             >
               CHECKOUT
