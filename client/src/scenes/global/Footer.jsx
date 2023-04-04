@@ -6,7 +6,6 @@ import { IconButton, Link } from "@mui/material";
 import { Box, Typography } from "@mui/material";
 import { shades } from "../../theme";
 const Footer = () => {
-  const links = ["", "", "", ""];
   return (
     <Box  backgroundColor={shades.primary[300]} padding="45px 0">
       <Box

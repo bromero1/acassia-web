@@ -2,7 +2,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Badge, Box, IconButton, Typography } from "@mui/material";
+import { Badge, Box, IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
@@ -52,6 +52,7 @@ const Navbar = () => {
           <img 
             src={logo}
             height="80px"
+            alt="Acassia Flowers - Home"
             />
           {/* <Typography sx={{fontSize: "36px"}}>Acassia</Typography> */}
         </Box>
