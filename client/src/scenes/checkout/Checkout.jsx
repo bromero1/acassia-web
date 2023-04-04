@@ -1,30 +1,12 @@
-import {
-  Alert,
-  StepLabel,
-  Step,
-  Stepper,
-  Typography,
-  Button,
-} from "@mui/material";
+import { StepLabel, Step, Stepper, Button, Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Form, Formik, useFormik, Field } from "formik";
-import styled from "@emotion/styled";
+import { Formik } from "formik";
 import { shades } from "../../theme";
-import {
-  decreaseCount,
-  increaseCount,
-  removeFromCart,
-  setIsCartOpen,
-} from "../../state/";
-import { unstable_useBlocker, useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
 import * as yup from "yup";
 import { validationSchema } from "./schema";
 import { useState } from "react";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
-
-const handleSubmitForm = () => {};
 
 const Checkout = () => {
   const initialValues = {
@@ -58,6 +40,23 @@ const Checkout = () => {
   const isFirstStep = currentStep === 0;
   const isSecondStep = currentStep === 1;
 
+  const handleFormSubmit = async (values, actions) => {
+    setActiveStep(activeStep + 1);
+
+    // this copies the billing address onto shipping address
+    if (isFirstStep && values.shippingAddress.isSameAddress) {
+      actions.setFieldValue("shippingAddress", {
+        ...values.billingAddress,
+        isSameAddress: true,
+      });
+    }
+
+    if (isSecondStep) {
+      makePayment(values);
+    }
+
+    actions.setTouched({});
+  };
   return (
     <Box width="80%" m="40px auto" backgroundColor={shades.primary[100]}>
       <Stepper activeStep={currentStep}>
