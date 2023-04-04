@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Formik } from "formik";
 import { shades } from "../../theme";
 import * as yup from "yup";
-import { validationSchema } from "./schema";
+// import { validationSchema } from "./schema";
 import { useState } from "react";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
@@ -41,7 +41,6 @@ const Checkout = () => {
 
   const cart = useSelector((state) => state.cart.cart);
   const [currentStep, setStep] = useState(0);
-  const [isFirst, setFirst] = useState(true);
   const isFirstStep = currentStep === 0;
   const isSecondStep = currentStep === 1;
 
@@ -55,7 +54,7 @@ const Checkout = () => {
         isSameAddress: true,
       });
     }
-
+    //After billing and shipping is entered
     if (isSecondStep) {
       makePayment(values);
     }
@@ -74,15 +73,15 @@ const Checkout = () => {
       })),
     };
 
-    const response = await fetch("http://localhost:1337/api/order",{
+    const response = await fetch("http://localhost:1337/api/order", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(requestBody)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
     });
     const session = await response.json();
     await stripe.redirectToCheckout({
       sessionId: session.id,
-    })
+    });
   }
   return (
     <Box width="80%" m="40px auto" backgroundColor={shades.primary[100]}>
@@ -161,6 +160,7 @@ const Checkout = () => {
 
                 <Button
                   fullWidth
+                  type="submit"
                   color="primary"
                   variant="contained"
                   sx={{
@@ -170,9 +170,8 @@ const Checkout = () => {
                     borderRadius: 0,
                     padding: "15px 40px",
                   }}
-                  onClick={() => setStep(currentStep + 1)}
                 >
-                  {isFirst ? "Next" : "Place Order"}
+                  {!isSecondStep ? "Next" : "Place Order"}
                 </Button>
               </Box>
             </form>
@@ -182,5 +181,33 @@ const Checkout = () => {
     </Box>
   );
 };
+
+const validationSchema = [
+  yup.object().shape({
+    billingAddress: yup.object().shape({
+      firstName: yup.string().required("required"),
+      lastName: yup.string().required("required"),
+      street1: yup.string().required("required"),
+      street2: yup.string(),
+      city: yup.string().required("required"),
+      state: yup.string().required("required"),
+      zip: yup.string().required("required"),
+    }),
+    shippingAddress: yup.object().shape({
+      isSameAsBilling: yup.boolean(),
+      firstName: yup.string().required("required"),
+      lastName: yup.string().required("required"),
+      street1: yup.string().required("required"),
+      street2: yup.string(),
+      city: yup.string().required("required"),
+      state: yup.string().required("required"),
+      zip: yup.string().required("required"),
+    }),
+  }),
+  yup.object().shape({
+    email: yup.string().email().required("required"),
+    phoneNumber: yup.string().required("required"),
+  }),
+];
 
 export default Checkout;
