@@ -7,7 +7,11 @@ import { validationSchema } from "./schema";
 import { useState } from "react";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
+import { loadStripe } from "@stripe/stripe-js";
 
+const stripePromise = loadStripe(
+  "pk_test_51MeM66GuAAu0dPWHWhGdqvxyeJxPzU6d228UGhkzHwN7LWVnx5LrUWgEWVSZ5LsWUA8vtx5pFcDkIrR78o4KC90L00zHFHpuRe"
+);
 const Checkout = () => {
   const initialValues = {
     billingAddress: {
@@ -34,6 +38,7 @@ const Checkout = () => {
     email: "",
     phoneNumber: "",
   };
+
   const cart = useSelector((state) => state.cart.cart);
   const [currentStep, setStep] = useState(0);
   const [isFirst, setFirst] = useState(true);
@@ -41,7 +46,7 @@ const Checkout = () => {
   const isSecondStep = currentStep === 1;
 
   const handleFormSubmit = async (values, actions) => {
-    setActiveStep(activeStep + 1);
+    setStep(currentStep + 1);
 
     // this copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
@@ -57,6 +62,28 @@ const Checkout = () => {
 
     actions.setTouched({});
   };
+
+  async function makePayment(values) {
+    const stripe = await stripePromise;
+    const requestBody = {
+      userName: [values.firstName, values.lastName].join(" "),
+      email: values.email,
+      products: cart.map(({ id, count }) => ({
+        id,
+        count,
+      })),
+    };
+
+    const response = await fetch("http://localhost:1337/api/order",{
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(requestBody)
+    });
+    const session = await response.json();
+    await stripe.redirectToCheckout({
+      sessionId: session.id,
+    })
+  }
   return (
     <Box width="80%" m="40px auto" backgroundColor={shades.primary[100]}>
       <Stepper activeStep={currentStep}>
@@ -72,7 +99,7 @@ const Checkout = () => {
       </Stepper>
       <Box>
         <Formik
-          onSubmit={handleSubmitForm}
+          onSubmit={handleFormSubmit}
           initialValues={initialValues}
           validationSchema={validationSchema[currentStep]}
         >
