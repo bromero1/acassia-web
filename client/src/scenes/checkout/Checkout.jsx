@@ -1,65 +1,74 @@
-import { StepLabel, Step, Stepper, Button, Box } from "@mui/material";
+import {
+  StepLabel,
+  Step,
+  Stepper,
+  Button,
+  Box,
+  Typography,
+} from "@mui/material";
 import { useSelector } from "react-redux";
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 import { shades } from "../../theme";
-import * as yup from "yup";
-// import { validationSchema } from "./schema";
+// import * as yup from "yup";
+import { initialValues, validationSchema } from "./initialValues";
 import { useState } from "react";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
+import Confirmation from "./Confirmation";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
   "pk_test_51MeM66GuAAu0dPWHWhGdqvxyeJxPzU6d228UGhkzHwN7LWVnx5LrUWgEWVSZ5LsWUA8vtx5pFcDkIrR78o4KC90L00zHFHpuRe"
 );
-const Checkout = () => {
-  const initialValues = {
-    billingAddress: {
-      firstName: "",
-      lastName: "",
-      country: "",
-      street1: "",
-      street2: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    },
-    shippingAddress: {
-      isSameAddress: true,
-      firstName: "",
-      lastName: "",
-      country: "",
-      street1: "",
-      street2: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    },
-    email: "",
-    phoneNumber: "",
-  };
 
+const steps = ["Billing Address", "Payment Details", "Review Order"];
+
+function renderStepContent(step) {
+  switch (step) {
+    case 0:
+      return <Shipping />;
+    case 1:
+      return <Payment />;
+    case 2:
+      return <Confirmation />;
+  }
+}
+
+const Checkout = () => {
   const cart = useSelector((state) => state.cart.cart);
   const [currentStep, setStep] = useState(0);
-  const isFirstStep = currentStep === 0;
-  const isSecondStep = currentStep === 1;
+  const isLastStep = currentStep === steps.length - 1;
 
   const handleFormSubmit = async (values, actions) => {
     setStep(currentStep + 1);
 
     // this copies the billing address onto shipping address
-    if (isFirstStep && values.shippingAddress.isSameAddress) {
+    if (currentStep === 0 && values.shippingAddress.isSameAddress) {
       actions.setFieldValue("shippingAddress", {
         ...values.billingAddress,
         isSameAddress: true,
       });
     }
     //After billing and shipping is entered
-    if (isSecondStep) {
+    if (currentStep === 1) {
       makePayment(values);
     }
 
     actions.setTouched({});
+  };
+
+  const handleSubmit = (values, actions) => {
+    if (isLastStep) {
+      handleFormSubmit(values, actions);
+    } else {
+      setStep(currentStep + 1);
+      actions.setTouched({});
+      actions.setSubmitting(false);
+    }
+  };
+
+  const handleBack = () => {
+    setStep(currentStep - 1);
   };
 
   async function makePayment(values) {
@@ -96,118 +105,26 @@ const Checkout = () => {
           <StepLabel>Payment</StepLabel>
         </Step>
       </Stepper>
-      <Box>
+
+      {/* Conditional render - Confirmation */}
+      {currentStep === steps.length ? (
+        <Confirmation />
+      ) : (
+        // Other parts of the form
         <Formik
-          onSubmit={handleFormSubmit}
           initialValues={initialValues}
           validationSchema={validationSchema[currentStep]}
+          onSubmit={handleSubmit}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleBlur,
-            handleChange,
-            handleSubmit,
-            setFieldValue,
-          }) => (
-            <form onSubmit={handleSubmit}>
-              {isFirstStep && (
-                <Shipping
-                  values={values}
-                  errors={errors}
-                  touched={touched}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  setFieldValue={setFieldValue}
-                />
-              )}
-              {isSecondStep && (
-                <Payment
-                  values={values}
-                  errors={errors}
-                  touched={touched}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  setFieldValue={setFieldValue}
-                />
-              )}
-
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                gap="50px"
-                backgroundColor="red"
-              >
-                {/* Back Button */}
-                {!isFirstStep && (
-                  <Button
-                    fullWidth
-                    color="primary"
-                    variant="contained"
-                    sx={{
-                      backgroundColor: shades.primary[200],
-                      boxShadow: "none",
-                      color: "white",
-                      borderRadius: 0,
-                      padding: "15px 40px",
-                    }}
-                    onClick={() => setStep(currentStep - 1)}
-                  >
-                    Back
-                  </Button>
-                )}
-
-                <Button
-                  fullWidth
-                  type="submit"
-                  color="primary"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: shades.primary[200],
-                    boxShadow: "none",
-                    color: "white",
-                    borderRadius: 0,
-                    padding: "15px 40px",
-                  }}
-                >
-                  {!isSecondStep ? "Next" : "Place Order"}
-                </Button>
-              </Box>
-            </form>
-          )}
+          <Box>
+            {renderStepContent(currentStep)}
+          </Box>
         </Formik>
-      </Box>
+      )}
     </Box>
   );
 };
 
-const validationSchema = [
-  yup.object().shape({
-    billingAddress: yup.object().shape({
-      firstName: yup.string().required("required"),
-      lastName: yup.string().required("required"),
-      street1: yup.string().required("required"),
-      street2: yup.string(),
-      city: yup.string().required("required"),
-      state: yup.string().required("required"),
-      zip: yup.string().required("required"),
-    }),
-    shippingAddress: yup.object().shape({
-      isSameAsBilling: yup.boolean(),
-      firstName: yup.string().required("required"),
-      lastName: yup.string().required("required"),
-      street1: yup.string().required("required"),
-      street2: yup.string(),
-      city: yup.string().required("required"),
-      state: yup.string().required("required"),
-      zip: yup.string().required("required"),
-    }),
-  }),
-  yup.object().shape({
-    email: yup.string().email().required("required"),
-    phoneNumber: yup.string().required("required"),
-  }),
-];
+
 
 export default Checkout;
