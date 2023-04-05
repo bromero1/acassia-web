@@ -45,6 +45,7 @@ const Checkout = () => {
   const isSecondStep = currentStep === 1;
 
   const handleFormSubmit = async (values, actions) => {
+    console.log("inside: handleFormSubmit");
     setStep(currentStep + 1);
     
 
@@ -74,7 +75,7 @@ const Checkout = () => {
       })),
     };
 
-    const response = await fetch("http://localhost:1337/api/order", {
+    const response = await fetch("http://localhost:1337/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
