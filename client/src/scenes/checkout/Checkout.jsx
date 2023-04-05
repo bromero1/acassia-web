@@ -72,8 +72,7 @@ const Checkout = () => {
       products: cart.map(({ id, count }) => ({
         id,
         count,
-      })),
-    };
+      }))};
 
     const response = await fetch("http://localhost:1337/api/orders", {
       method: "POST",
@@ -102,7 +101,7 @@ const Checkout = () => {
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}
-          validationSchema={validationSchema[currentStep]}
+          // validationSchema={validationSchema[currentStep]}
         >
           {({
             values,
