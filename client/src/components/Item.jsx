@@ -29,7 +29,6 @@ const Item = ({ item, width }) => {
     },
   } = image;
 
-
   return (
     <Box width={width}>
       <Box
@@ -54,7 +53,7 @@ const Item = ({ item, width }) => {
           left="0"
           width="100%"
           padding="0 5%"
-          zIndex= "99" 
+          zIndex="99"
         >
           <Box display="flex" justifyContent="space-between">
             <Box
@@ -75,8 +74,14 @@ const Item = ({ item, width }) => {
             {/* ADD TO CART BUTTON OVERLAY */}
             <Button
               onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
-              sx={{ backgroundColor: shades.primary[300], color: "white" }}
-              //color="white"
+              sx={{
+                backgroundColor: shades.primary[300],
+                color: "white",
+                ":hover": {
+                  bgcolor: shades.primary[600],
+                  color: "white",
+                },
+              }}
             >
               ADD TO CART
             </Button>

@@ -8,6 +8,7 @@ import Confirmation from "./scenes/checkout/Confirmation";
 import CartMenu from "./scenes/global/CartMenu";
 import Footer from "./scenes/global/Footer";
 import Subscribe from "./scenes/global/Subscribe";
+import Catalog from "./scenes/productCatalog/Catalog";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/item/:itemId" element={<ItemDetails />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<Confirmation />} />
+          <Route path="/catalog" element={Catalog} />
         </Routes>
         <Subscribe />
         <Footer />

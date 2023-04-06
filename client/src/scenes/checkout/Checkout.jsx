@@ -65,9 +65,9 @@ const Checkout = () => {
   };
 
   async function makePayment(values) {
-    const stripe = await stripePromise;
+    // 
     const requestBody = {
-      userName: [values.firstName, values.lastName].join(" "),
+      userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
       email: values.email,
       products: cart.map(({ id, count }) => ({
         id,
@@ -79,6 +79,8 @@ const Checkout = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
     });
+
+    const stripe = await stripePromise;
     const session = await response.json();
     await stripe.redirectToCheckout({
       sessionId: session.id,
@@ -89,9 +91,6 @@ const Checkout = () => {
       <Stepper activeStep={currentStep}>
         <Step>
           <StepLabel>Billing</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Shipping</StepLabel>
         </Step>
         <Step>
           <StepLabel>Payment</StepLabel>
