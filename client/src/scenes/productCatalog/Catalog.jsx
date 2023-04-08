@@ -6,6 +6,7 @@ const Catalog = () => {
   const [items, setItems] = useState({});
   const [filters, setFilters] = useState([]);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
+
   async function getItems() {
     const items = await fetch(
       "http://localhost:1337/api/items?populate=image",
@@ -15,8 +16,14 @@ const Catalog = () => {
     );
     const itemsJson = await items.json();
     // dispatch(setItems(itemsJson.data));
+    setItems(itemsJson);
+    console.log(itemsJson);
   }
 
+  useEffect(() => {
+    getItems();
+  }, []);
+  
   return (
     <Grid container spacing={2}>
       <Grid item xs={6} md={8}>
