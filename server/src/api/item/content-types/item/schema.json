@@ -43,6 +43,9 @@
         "bestSellers",
         "onSale"
       ]
+    },
+    "sale_item": {
+      "type": "boolean"
     }
   }
 }
