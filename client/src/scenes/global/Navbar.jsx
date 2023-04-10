@@ -11,6 +11,7 @@ import logo from "../../assets/logo.svg";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import { removeToken } from "../../helpers";
+
 // Box for container
 // Box to center 3 sections of navbar
 //   - Logo
@@ -27,7 +28,6 @@ const Navbar = () => {
 
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [isLogged, setIsLogged] = useState(false);
 
   const handleAccountToggle = () => {
     console.log(isAccountOpen);
@@ -36,8 +36,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     removeToken();
-    setIsLogged(!isLogged);
-    navigate("/signin", { replace: true });
+    window.location.reload(false);
+    // navigate("/signin", { replace: true });
   };
 
   const handleMenu = (event) => {
@@ -127,26 +127,17 @@ const Navbar = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            {user ? (
-              [
-                <MenuItem
-                  onClick={() => {
-                    navigate("/account");
-                  }}
-                >
-                  My Account
-                </MenuItem>,
-                <MenuItem
-                  onClick={() => {
-                    removeToken();
-                    setIsLogged(false);
-                    navigate("/");
-                  }}
-                >
-                  Sign Out
-                </MenuItem>,
-              ]
-            ) : (
+            {user && [
+              <MenuItem
+                onClick={() => {
+                  navigate("/account");
+                }}
+              >
+                My Account
+              </MenuItem>,
+              <MenuItem onClick={handleLogout}>Sign Out</MenuItem>,
+            ]}
+            {!user && (
               <MenuItem
                 onClick={() => {
                   navigate("/signin");

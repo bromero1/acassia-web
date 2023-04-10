@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./scenes/global/Navbar";
 import Home from "./scenes/home/Home";
 import ItemDetails from "./scenes/itemDetails/ItemDetails";
@@ -11,6 +17,9 @@ import Subscribe from "./scenes/global/Subscribe";
 import Catalog from "./scenes/productCatalog/Catalog";
 import AuthProvider from "./components/AuthProvider";
 import SignIn from "./scenes/SignIn";
+import { getToken } from "./helpers";
+import Profile from "./scenes/profile/Profile";
+import Account from "./scenes/account/Account";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -37,6 +46,14 @@ function App() {
             <Route path="/checkout/success" element={<Confirmation />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route
+              path="/profile"
+              element={getToken() ? <Profile /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/account"
+              element={getToken() ? <Account /> : <Navigate to="/signin" />}
+            />
           </Routes>
           <Subscribe />
           <Footer />
