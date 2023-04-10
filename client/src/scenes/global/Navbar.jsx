@@ -2,12 +2,15 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Badge, Box, IconButton } from "@mui/material";
+import { Badge, Box, IconButton, Link, Menu, MenuItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/logo.svg";
+import { useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import { removeToken } from "../../helpers";
 // Box for container
 // Box to center 3 sections of navbar
 //   - Logo
@@ -15,10 +18,35 @@ import logo from "../../assets/logo.svg"
 //   - Icons
 
 const Navbar = () => {
+  const { user } = useAuthContext();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // state.cart.cart
+
   const cart = useSelector((state) => state.cart.cart);
+
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isLogged, setIsLogged] = useState(false);
+
+  const handleAccountToggle = () => {
+    console.log(isAccountOpen);
+    setIsAccountOpen(!isAccountOpen);
+  };
+
+  const handleLogout = () => {
+    removeToken();
+    setIsLogged(!isLogged);
+    navigate("/signin", { replace: true });
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     // Containing the whole navbar
@@ -38,6 +66,7 @@ const Navbar = () => {
         width="80%"
         margin="auto"
         maxHeight="100%"
+        // padding= "10px "
         display="flex"
         justifyContent="space-between"
         alignContent="center"
@@ -49,11 +78,7 @@ const Navbar = () => {
           color={shades.primary[500]}
           alignContent="center"
         >
-          <img 
-            src={logo}
-            height="80px"
-            alt="Acassia Flowers - Home"
-            />
+          <img src={logo} height="80px" alt="Acassia Flowers - Home" />
           {/* <Typography sx={{fontSize: "36px"}}>Acassia</Typography> */}
         </Box>
 
@@ -78,17 +103,61 @@ const Navbar = () => {
           columnGap="20px"
           zIndex="2"
         >
-          {/* search button */}
+          {/* search button ----------------------- */}
           <IconButton>
             <SearchIcon />
           </IconButton>
 
-          {/* account button */}
-          <IconButton>
+          {/* account button -----------------------*/}
+          <IconButton onClick={handleMenu}>
             <PersonIcon />
           </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {user ? (
+              [
+                <MenuItem
+                  onClick={() => {
+                    navigate("/account");
+                  }}
+                >
+                  My Account
+                </MenuItem>,
+                <MenuItem
+                  onClick={() => {
+                    removeToken();
+                    setIsLogged(false);
+                    navigate("/");
+                  }}
+                >
+                  Sign Out
+                </MenuItem>,
+              ]
+            ) : (
+              <MenuItem
+                onClick={() => {
+                  navigate("/signin");
+                }}
+              >
+                Sign In
+              </MenuItem>
+            )}
+          </Menu>
 
-          {/* cart button */}
+          {/* cart button ------------------------- */}
           <IconButton onClick={() => dispatch(setIsCartOpen())}>
             <Badge
               badgeContent={cart.length}
@@ -99,23 +168,23 @@ const Navbar = () => {
                   right: -3,
                   top: 1,
                   border: `2px solid white`,
-                  fontFamily: "Roboto", fontSize:"12px", fontWeight:"700",
+                  fontFamily: "Roboto",
+                  fontSize: "12px",
+                  fontWeight: "700",
                   color: "white",
                   background: shades.primary[400],
-                  zIndex: -1
-
-                }
+                  zIndex: -1,
+                },
               }}
-
             >
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
 
           {/* menu button */}
-          <IconButton>
+          {/* <IconButton>
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
         </Box>
       </Box>
     </Box>
