@@ -9,6 +9,8 @@ import CartMenu from "./scenes/global/CartMenu";
 import Footer from "./scenes/global/Footer";
 import Subscribe from "./scenes/global/Subscribe";
 import Catalog from "./scenes/productCatalog/Catalog";
+import AuthProvider from "./components/AuthProvider";
+import SignIn from "./scenes/SignIn";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -24,20 +26,23 @@ const ScrollToTop = () => {
 function App() {
   return (
     <div className="app">
-      <BrowserRouter>
-        <Navbar />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/item/:itemId" element={<ItemDetails />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/checkout/success" element={<Confirmation />} />
-          <Route path="/catalog" element={<Catalog />} />
-        </Routes>
-        <Subscribe />
-        <Footer />
-        <CartMenu />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Navbar />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/item/:itemId" element={<ItemDetails />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/success" element={<Confirmation />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/signin" element={<SignIn />} />
+          </Routes>
+          <Subscribe />
+          <Footer />
+          <CartMenu />
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
