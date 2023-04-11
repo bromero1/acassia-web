@@ -56,7 +56,7 @@ const Navbar = () => {
       width="100%"
       height="80px"
       backgroundColor={"white"}
-      // position="fixed"
+      position="sticky"
       top="0"
       left="0"
       zIndex="1"
