@@ -5,7 +5,7 @@ import { shades } from "../../theme";
 const Subscribe = () => {
   return (
     <Box
-      mt="80px"
+      mt="0"
       width="100%"
       backgroundColor={shades.secondary[200]}
       padding="80px auto"

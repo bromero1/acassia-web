@@ -1,4 +1,12 @@
-import { Box, FormControl, TextField, Button, FormLabel } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  TextField,
+  Button,
+  FormLabel,
+  Typography,
+  Card,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { API } from "../constant";
@@ -52,39 +60,58 @@ const SignIn = () => {
     }
   };
   return (
-    <Box m="40px auto" width="80%" minHeight="800px">
-      <Box m="30px auto">
-        <FormControl>
-          <FormLabel>Enter Email</FormLabel>
-          <TextField
-            id="email"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          ></TextField>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="80vh"
+      flexDirection="column"
+    >
+      <Typography
+        variant="h2"
+        color={shades.primary[500]}
+        align="center"
+        mb="5px"
+      >
+        Sign In
+      </Typography>
 
-          <FormLabel>Enter Password</FormLabel>
-          <TextField
-            id="password"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            type="password"
-          ></TextField>
+      <FormControl>
+        <FormLabel>Enter Email</FormLabel>
+        <TextField
+          fullWidth
+          id="email"
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        ></TextField>
 
-          <Button
-            type="submit"
-            onClick={onFinish}
-            sx={{
-              backgroundColor: shades.primary[600],
-              color: "white",
-              "&:hover": { backgroundColor: shades.primary[400] },
-            }}
-          >
-            Submit
-          </Button>
-        </FormControl>
-      </Box>
+        <FormLabel>Enter Password</FormLabel>
+        <TextField
+          id="password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+          type="password"
+        ></TextField>
+
+        <Button
+          type="submit"
+          onClick={onFinish}
+          sx={{
+            backgroundColor: shades.primary[600],
+            color: "white",
+            "&:hover": { backgroundColor: shades.primary[400] },
+          }}
+        >
+          Submit
+        </Button>
+
+          <Typography
+          to="/reset"> Forgot Password</Typography>
+         
+
+      </FormControl>
     </Box>
   );
 };

@@ -69,9 +69,10 @@ const Checkout = () => {
     const requestBody = {
       userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
       email: values.email,
-      products: cart.map(({ id, count }) => ({
+      products: cart.map(({ id, count, price }) => ({
         id,
         count,
+        price, 
       }))};
 
     const response = await fetch("http://localhost:1337/api/orders", {
