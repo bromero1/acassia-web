@@ -27,6 +27,7 @@ const SignIn = () => {
   const onFinish = async () => {
     setIsLoading(true);
     try {
+
       const value = {
         identifier: username,
         password: password,
@@ -49,12 +50,12 @@ const SignIn = () => {
 
         //setUser
         setUser(data.user);
-
-        navigate("/account", { replace: true });
+        navigate("/", { replace: true });
       }
     } catch (error) {
       console.log("Error Logging in: ");
       console.log(error);
+      
     } finally {
       setIsLoading(false);
     }
@@ -107,10 +108,7 @@ const SignIn = () => {
           Submit
         </Button>
 
-          <Typography
-          to="/reset"> Forgot Password</Typography>
-         
-
+        <Typography to="/reset"> Forgot Password</Typography>
       </FormControl>
     </Box>
   );

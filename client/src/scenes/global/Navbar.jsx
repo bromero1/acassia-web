@@ -30,7 +30,6 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleAccountToggle = () => {
-    console.log(isAccountOpen);
     setIsAccountOpen(!isAccountOpen);
   };
 
