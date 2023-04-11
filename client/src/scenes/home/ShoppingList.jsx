@@ -69,7 +69,7 @@ const ShoppingList = () => {
       >
         {value === "all" &&
           items.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.attributes.name}-${item.id}`} />
           ))}
       </Box>
     </Box>

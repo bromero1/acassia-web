@@ -73,7 +73,9 @@ const Item = ({ item, width }) => {
 
             {/* ADD TO CART BUTTON OVERLAY */}
             <Button
-              onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
+              onClick={() => dispatch(addToCart(
+                { item: { ...item, count } 
+                  }))}
               sx={{
                 backgroundColor: shades.primary[300],
                 color: "white",
@@ -91,7 +93,7 @@ const Item = ({ item, width }) => {
       <Box mt="3px">
         <Typography variant="subtitle2" color={neutral.dark}>
           {category
-            .replace(/([A-Z])/g, " $1")
+            ?.replace(/([A-Z])/g, " $1")
             .replace(/^./, (str) => str.toUpperCase())}
         </Typography>
         <Typography>{name}</Typography>
