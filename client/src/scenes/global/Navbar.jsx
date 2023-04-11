@@ -59,7 +59,7 @@ const Navbar = () => {
       position="sticky"
       top="0"
       left="0"
-      zIndex="1"
+      zIndex="99"
     >
       {/* Container aligning sections within navbar */}
       <Box
@@ -129,16 +129,20 @@ const Navbar = () => {
           >
             {user && [
               <MenuItem
+                key="account"
                 onClick={() => {
                   navigate("/account");
                 }}
               >
                 My Account
               </MenuItem>,
-              <MenuItem onClick={handleLogout}>Sign Out</MenuItem>,
+              <MenuItem 
+              key="signout"
+              onClick={handleLogout}>Sign Out</MenuItem>,
             ]}
             {!user && (
               <MenuItem
+                key="signin"
                 onClick={() => {
                   navigate("/signin");
                 }}
