@@ -14,6 +14,7 @@
     "@strapi/plugin-users-permissions": "4.9.1",
     "@strapi/strapi": "4.9.1",
     "better-sqlite3": "8.0.1",
+    "pg": "^8.10.0",
     "strapi-plugin-responsive-image": "^1.0.1",
     "stripe": "^11.17.0"
   },
