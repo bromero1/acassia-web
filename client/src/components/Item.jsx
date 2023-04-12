@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
+import { IconButton, Box, Typography, useTheme, Button, useMediaQuery } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../theme";
@@ -8,6 +8,7 @@ import { addToCart } from "../state";
 import { useNavigate } from "react-router-dom";
 
 const Item = ({ item, width }) => {
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -47,7 +48,7 @@ const Item = ({ item, width }) => {
 
         {/* OVERLAY FOR ADDING TO CART ----- */}
         <Box
-          display={isHovered ? "block" : "none"}
+          display={isHovered || !isNonMobile ? "block" : "none"}
           position="absolute"
           bottom="5%"
           left="0"

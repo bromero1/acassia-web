@@ -17,7 +17,7 @@ const ItemDetails = () => {
 
   const getItem = async () => {
     const response = await fetch(
-      `http://localhost:1337/api/items/${itemId}?populate=image`,
+      `http://192.168.0.63:1337/api/items/${itemId}?populate=image`,
       {
         method: "GET",
       }
@@ -42,7 +42,7 @@ const ItemDetails = () => {
             alt={item.name}
             width="100%"
             height="100%"
-            src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.url}`}
+            src={`http://192.168.0.63:1337${item?.attributes?.image?.data?.attributes?.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>

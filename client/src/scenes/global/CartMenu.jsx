@@ -4,6 +4,7 @@ import {
   Divider,
   IconButton,
   Typography,
+  useMediaQuery
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,6 +27,7 @@ const FlexBox = styled(Box)`
 `;
 
 const CartMenu = () => {
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
@@ -40,7 +42,7 @@ const CartMenu = () => {
       display={isCartOpen ? "block" : "none"}
       sx={{ backgroundColor: "rgba(163,136,185, .9)" }}
       position="fixed"
-      zIndex="10"
+      zIndex="99"
       width="100%"
       height="100%"
       left="0"
@@ -52,7 +54,7 @@ const CartMenu = () => {
         position="fixed"
         right="0"
         bottom="0"
-        width="max(400px, 30%)"
+        width={isNonMobile ? "max(400px, 30%)" : "100%"}
         height="100%"
         backgroundColor="white"
       >
