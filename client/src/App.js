@@ -46,6 +46,7 @@ function App() {
             <Route path="/checkout/success" element={<Confirmation />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/catalog" element={<Catalog />} />
             <Route
               path="/profile"
               element={getToken() ? <Profile /> : <Navigate to="/signin" />}

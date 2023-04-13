@@ -1,10 +1,13 @@
 import { Box, useMediaQuery, Typography, Grid } from "@mui/material";
-import Item from "../../components/Item";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { setItems } from "../../state";
+import CatalogGrid from "./CatalogGrid";
+import { useDispatch, useSelector } from "react-redux";
+import CatalogMenu from "./CatalogMenu";
 
 const Catalog = () => {
-  const [items, setItems] = useState({});
-  const [filters, setFilters] = useState([]);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.cart.items);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   async function getItems() {
@@ -15,30 +18,20 @@ const Catalog = () => {
       }
     );
     const itemsJson = await items.json();
-    // dispatch(setItems(itemsJson.data));
-    setItems(itemsJson);
+    dispatch(setItems(itemsJson.data));
+    // setItems(itemsJson);
     console.log(itemsJson);
   }
 
   useEffect(() => {
     getItems();
   }, []);
-  
+
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={6} md={8}>
-        <Box backgroundColor="red">xs=6 md=8</Box>
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <Box backgroundColor="red">xs=6 md=4</Box>
-      </Grid>
-      <Grid item xs={6} md={4}>
-        <Box backgroundColor="red">xs=6 md=4</Box>
-      </Grid>
-      <Grid item xs={6} md={8}>
-        <Box backgroundColor="red">xs=6 md=8</Box>
-      </Grid>
-    </Grid>
+    <Box width="90%" margin="80px auto" display="flex">
+      <CatalogMenu isNonMobile={isNonMobile} /> 
+      <CatalogGrid />
+    </Box>
   );
 };
 
