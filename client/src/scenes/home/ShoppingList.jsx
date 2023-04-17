@@ -17,7 +17,7 @@ const ShoppingList = () => {
   };
   async function getItems() {
     const items = await fetch(
-      "http://localhost:1337/api/items?populate=image",
+      "https://luxuriant-rad-duck.strapiapp.com/api/items?populate=image",
       {
         method: "GET",
       }
