@@ -41,7 +41,7 @@ const Item = ({ item, width }) => {
           alt={item.name}
           width="300px"
           height="400px"
-          src={`https://luxuriant-rad-duck.strapiapp.com${url}`}
+          src={`${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer", objectFit: "contain" }}
         />
