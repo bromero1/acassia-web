@@ -15,9 +15,14 @@ const ItemDetails = () => {
 
   const [item, setItem] = useState([]);
 
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   const getItem = async () => {
     const response = await fetch(
-      `http://192.168.0.63:1337/api/items/${itemId}?populate=image`,
+      `http://localhost:1337/api/items/${itemId}?populate=image`,
       {
         method: "GET",
       }
@@ -37,20 +42,30 @@ const ItemDetails = () => {
       <Box display="flex" flexWrap="wrap" columnGap="40px">
         {/* Image box section */}
         {/* mb when flex starts to wrap  */}
-        <Box flex="1 1 40%" mb="40px" backgroundColor="green">
+        <Box flex="1 1 40%" mb="40px">
           <img
-            alt={item.name}
+            alt={item?.name}
             width="100%"
             height="100%"
-            src={`http://192.168.0.63:1337${item?.attributes?.image?.data?.attributes?.url}`}
+            src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>
         {/* Right side box containing item info and actions */}
-        <Box backgroundColor={shades.secondary[500]} flex="1 1 40%" >
-          <Typography> {item?.attributes?.name}</Typography>
-          <Typography> {item?.attributes?.longDescription}</Typography>
-          <Typography> {item?.attributes?.price}</Typography>
+        <Box flex="1 1 50%">
+          <Box display="flex" justifyContent="space-between">
+            <Box onClick={handleBack}>Back</Box>
+            <Box>Next </Box>
+          </Box>
+
+          <Box m="65px 0 25px 0">
+            <Typography variant="h3"> {item?.attributes?.name}</Typography>
+            <Typography> ${item?.attributes?.price}</Typography>
+            <Typography mt="20px">
+              {" "}
+              {item?.attributes?.longDescription}
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>
