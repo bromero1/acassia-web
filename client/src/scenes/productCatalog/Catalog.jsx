@@ -28,10 +28,21 @@ const Catalog = () => {
   }, []);
 
   return (
-    <Box width="90%" margin="80px auto" display="flex">
-      <CatalogMenu isNonMobile={isNonMobile} /> 
-      <CatalogGrid />
-    </Box>
+    <Grid container spacing={2} m="80px auto">
+      <Grid item xs={12} md={3}>
+        <Typography variant="h5">Home / Products</Typography>
+      </Grid>
+      <Grid item xs={12} md={9}>
+      <Typography variant="h3">Shop All</Typography>
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <CatalogMenu isNonMobile={isNonMobile} />
+      </Grid>
+
+      <Grid item xs={12} md={9}>
+        <CatalogGrid isNonMobile={isNonMobile} />
+      </Grid>
+    </Grid>
   );
 };
 
