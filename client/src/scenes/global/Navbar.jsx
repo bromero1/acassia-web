@@ -59,6 +59,8 @@ const Navbar = () => {
       top="0"
       left="0"
       zIndex="99"
+      sx={{boxShadow:4,
+        shadowOpacity:"0.1"}}
     >
       {/* Container aligning sections within navbar */}
       <Box

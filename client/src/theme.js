@@ -51,7 +51,7 @@ export const theme = responsiveFontSizes(createTheme({
     }
   },
   typography: {
-    fontFamily: ["Lato", "sans-serif"].join(","),
+    fontFamily: ["Lora", "sans-serif"].join(","),
     fontSize: 11,
     
   }
