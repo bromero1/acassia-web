@@ -11,6 +11,7 @@ import logo from "../../assets/logo.svg";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import { removeToken } from "../../helpers";
+import Typography from "@mui/material/Typography";
 
 // Box for container
 // Box to center 3 sections of navbar
@@ -59,8 +60,7 @@ const Navbar = () => {
       top="0"
       left="0"
       zIndex="99"
-      sx={{boxShadow:4,
-        shadowOpacity:"0.1"}}
+      sx={{ boxShadow: 4, shadowOpacity: "0.1" }}
     >
       {/* Container aligning sections within navbar */}
       <Box
@@ -84,17 +84,20 @@ const Navbar = () => {
         </Box>
 
         {/* MENU ITEMS */}
-        {/* <Box
+        <Box
           display="flex"
-          justifyContent="space-between"
-          columnGap="20px"
-          zIndex="2"
+          alignItems="center"
+          justifyContent="space-evenly"
+          width="40%"
+         >
+          <Typography >Mother's Day</Typography>
+          <Typography >Link</Typography>
+          <Typography >Sale</Typography>
+          <Typography >Link</Typography>
+          <Typography >Link</Typography>
+          <Typography >Link</Typography>
 
-        >
-
-          Insert Menu items here
-
-        </Box> */}
+        </Box>
 
         {/* ICONS */}
 
@@ -137,9 +140,9 @@ const Navbar = () => {
               >
                 My Account
               </MenuItem>,
-              <MenuItem 
-              key="signout"
-              onClick={handleLogout}>Sign Out</MenuItem>,
+              <MenuItem key="signout" onClick={handleLogout}>
+                Sign Out
+              </MenuItem>,
             ]}
             {!user && (
               <MenuItem
