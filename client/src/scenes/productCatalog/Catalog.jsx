@@ -13,6 +13,7 @@ import CatalogGrid from "./CatalogGrid";
 import { useDispatch, useSelector } from "react-redux";
 import CatalogMenu from "./CatalogMenu";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { shades } from "../../theme";
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Catalog = () => {
           <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
             <Link
               underline="hover"
-              color="inherit"
+              color={shades.primary[300]}
               // href="/material-ui/getting-started/installation/"
               // onClick={handleClick}
             >Home</Link>
