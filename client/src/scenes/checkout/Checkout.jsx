@@ -8,6 +8,7 @@ import { useState } from "react";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
 import { loadStripe } from "@stripe/stripe-js";
+import { HOST } from "../../constant";
 
 const stripePromise = loadStripe(
   "pk_test_51MeM66GuAAu0dPWHWhGdqvxyeJxPzU6d228UGhkzHwN7LWVnx5LrUWgEWVSZ5LsWUA8vtx5pFcDkIrR78o4KC90L00zHFHpuRe"
@@ -75,7 +76,7 @@ const Checkout = () => {
         price, 
       }))};
 
-    const response = await fetch("http://localhost:1337/api/orders", {
+    const response = await fetch(`${HOST}/api/orders`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
@@ -88,7 +89,7 @@ const Checkout = () => {
     });
   }
   return (
-    <Box width="80%" m="40px auto" backgroundColor={shades.primary[100]}>
+    <Box width="80%" m="40px auto">
       <Stepper activeStep={currentStep}>
         <Step>
           <StepLabel>Billing</StepLabel>

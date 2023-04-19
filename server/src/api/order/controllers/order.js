@@ -1,4 +1,7 @@
 "use strict";
+
+const { HOST } = require("../../../../../client/src/constant");
+
 const stripe = require("stripe")("sk_test_51MeM66GuAAu0dPWHgLUbUK84i8U8NUksVPvpZ7i3XxcoxQGgbjr25CLb4MVmY8FIGz1up5HO3Da0CErfiMHhRcgl00Xb8mc2zI");
 
 /**
@@ -39,8 +42,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         payment_method_types: ["card"],
         customer_email: email,
         mode: "payment",
-        success_url: "http://localhost:3000/checkout/success",
-        cancel_url: "http://localhost:3000/",
+        success_url: `${HOST}/checkout/success`,
+        cancel_url: `${HOST}`,
         line_items: lineItems,
       });
 

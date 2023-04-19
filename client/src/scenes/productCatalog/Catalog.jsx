@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CatalogMenu from "./CatalogMenu";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { shades } from "../../theme";
+import { HOST } from "../../constant";
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,9 @@ const Catalog = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   async function getItems() {
-    const items = await fetch(
-      "http://localhost:1337/api/items?populate=image",
-      {
-        method: "GET",
-      }
-    );
+    const items = await fetch(`${HOST}/api/items?populate=image`, {
+      method: "GET",
+    });
     const itemsJson = await items.json();
     dispatch(setItems(itemsJson.data));
     // setItems(itemsJson);
@@ -48,7 +46,9 @@ const Catalog = () => {
               color={shades.primary[300]}
               // href="/material-ui/getting-started/installation/"
               // onClick={handleClick}
-            >Home</Link>
+            >
+              Home
+            </Link>
             <Link underline="hover" color="inherit" href="/">
               MUI
             </Link>
@@ -60,7 +60,6 @@ const Catalog = () => {
           </Typography>
         </Grid>
 
-        
         <Grid item xs={12} md={3}>
           <CatalogMenu isNonMobile={isNonMobile} />
         </Grid>
