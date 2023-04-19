@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Typography, Tab, Tabs, useMediaQuery } from "@mui/material";
 import Item from "../../components/Item";
 import { setItems } from "../../state";
+import {API} from "../../constant";
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ShoppingList = () => {
   };
   async function getItems() {
     const items = await fetch(
-      "https://luxuriant-rad-duck.strapiapp.com/api/items?populate=image",
+      `${API}/items?populate=image`,
       {
         method: "GET",
       }
