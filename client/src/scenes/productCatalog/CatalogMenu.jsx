@@ -6,6 +6,11 @@ import {
   Typography,
   FormControlLabel,
 } from "@mui/material";
+
+const handleClearClick = () => {
+
+}
+
 const CatalogMenu = (isNonMobile) => {
   return (
     <Box
@@ -29,10 +34,10 @@ const CatalogMenu = (isNonMobile) => {
 
       <Box width="100%" display="flex" flexDirection="column">
         <Box display="flex" flexDirection="column" m="10px 15px">
-          <FormControlLabel control={<Checkbox />} label="Flowers" />
+          <FormControlLabel control={<Checkbox />} labelPlacement="end" label="Flowers" />
           <FormControlLabel control={<Checkbox />} label="Bouquet" />
-          <FormControlLabel control={<Checkbox />} label="Individual" />
-          <FormControlLabel control={<Checkbox />} label="Supplies" />
+          <FormControlLabel control={<Checkbox />} label="Test" />
+          <FormControlLabel control={<Checkbox />} label="Test" />
         </Box>
 
         <Divider variant="middle" />
@@ -40,8 +45,8 @@ const CatalogMenu = (isNonMobile) => {
         <Box display="flex" flexDirection="column" m="10px 15px">
           <FormControlLabel control={<Checkbox />} label="Flowers" />
           <FormControlLabel control={<Checkbox />} label="Bouquet" />
-          <FormControlLabel control={<Checkbox />} label="Individual" />
-          <FormControlLabel control={<Checkbox />} label="Supplies" />
+          <FormControlLabel control={<Checkbox />} label="Test" />
+          <FormControlLabel control={<Checkbox />} label="Test" />
         </Box>
       </Box>
     </Box>
