@@ -20,6 +20,7 @@ import SignIn from "./scenes/SignIn";
 import { getToken } from "./helpers";
 import Profile from "./scenes/profile/Profile";
 import Account from "./scenes/account/Account";
+import Register from "./scenes/Register";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/checkout/success" element={<Confirmation />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route
               path="/profile"

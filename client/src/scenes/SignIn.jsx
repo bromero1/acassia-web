@@ -65,6 +65,8 @@ const SignIn = () => {
         display="flex"
         flexDirection="column"
         width="300px"
+        minHeight="50vh"
+        mt="200px"
         ml="auto"
         mr="auto"
       >
