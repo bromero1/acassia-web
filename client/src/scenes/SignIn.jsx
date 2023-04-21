@@ -6,6 +6,7 @@ import {
   FormLabel,
   Typography,
   Card,
+  Link,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -27,7 +28,6 @@ const SignIn = () => {
   const onFinish = async () => {
     setIsLoading(true);
     try {
-
       const value = {
         identifier: username,
         password: password,
@@ -55,61 +55,81 @@ const SignIn = () => {
     } catch (error) {
       console.log("Error Logging in: ");
       console.log(error);
-      
     } finally {
       setIsLoading(false);
     }
   };
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="80vh"
-      flexDirection="column"
-    >
-      <Typography
-        variant="h2"
-        color={shades.primary[500]}
-        align="center"
-        mb="5px"
+    <Box height="100%" width="80%" m="80px auto">
+      <Box
+        display="flex"
+        flexDirection="column"
+        width="300px"
+        ml="auto"
+        mr="auto"
       >
-        Sign In
-      </Typography>
+        <Typography
+          variant="h2"
+          color={shades.primary[500]}
+          align="center"
+          mb="15px"
+        >
+          Sign In
+        </Typography>
 
-      <FormControl>
-        <FormLabel>Enter Email</FormLabel>
-        <TextField
-          fullWidth
-          id="email"
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        ></TextField>
+        <FormControl>
+          <Box mb="20px">
+            <TextField
+              fullWidth
+              // variant="outlined"
+              label="Email"
+              id="email"
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+              p="10px"
+            />
+          </Box>
 
-        <FormLabel>Enter Password</FormLabel>
-        <TextField
-          id="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          type="password"
-        ></TextField>
+          <Box mb="10px">
+            <TextField
+              fullWidth
+              id="password"
+              label="Password"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              type="password"
+            />
+          </Box>
 
-        <Button
-          type="submit"
-          onClick={onFinish}
-          sx={{
-            backgroundColor: shades.primary[600],
-            color: "white",
-            "&:hover": { backgroundColor: shades.primary[400] },
+          <Button
+            type="submit"
+            onClick={onFinish}
+            sx={{
+              backgroundColor: shades.primary[600],
+              color: "white",
+              "&:hover": { backgroundColor: shades.primary[400] },
+              letterSpacing: "2px",
+              fontSize: ".8rem"
+            }}
+          >
+            Submit
+          </Button>
+        </FormControl>
+
+        <Link
+          underline="none"
+          href="/reset"
+          onClick={() => {
+            //navigate(/reset)
           }}
         >
-          Submit
-        </Button>
-
-        <Typography to="/reset"> Forgot Password</Typography>
-      </FormControl>
+          <Typography sx={{ fontSize: "1.01rem" }} mt="10px">
+            Forgot Password
+          </Typography>
+        </Link>
+      </Box>
     </Box>
   );
 };
