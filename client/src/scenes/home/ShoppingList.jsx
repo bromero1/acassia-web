@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Tab, Tabs, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Tab,
+  Tabs,
+  useMediaQuery,
+  Divider,
+} from "@mui/material";
 import Item from "../../components/Item";
 import { setItems } from "../../state";
-import {API} from "../../constant";
+import { API } from "../../constant";
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
@@ -17,12 +24,9 @@ const ShoppingList = () => {
     setValue(newValue);
   };
   async function getItems() {
-    const items = await fetch(
-      `${API}/items?populate=image`,
-      {
-        method: "GET",
-      }
-    );
+    const items = await fetch(`${API}/items?populate=image`, {
+      method: "GET",
+    });
     const itemsJson = await items.json();
     dispatch(setItems(itemsJson.data));
   }
@@ -59,6 +63,9 @@ const ShoppingList = () => {
         <Tab label="TOP RATED" value="topRated"></Tab>
         <Tab label="ALL" value="all"></Tab>
       </Tabs>
+      <Box mb="20px">
+        <Divider />
+      </Box>
 
       <Box
         margin="0 auto"

@@ -90,12 +90,18 @@ const Navbar = () => {
           justifyContent="space-evenly"
           width="40%"
         >
-          <Typography>Mother's Day</Typography>
-          <Typography>Link</Typography>
-          <Typography>Sale</Typography>
-          <Typography>Link</Typography>
-          <Typography>Link</Typography>
-          <Typography>Link</Typography>
+          <Link underline="hover" href="/catalog">
+            <Typography letterSpacing=".8px">Shop Flowers</Typography>
+          </Link>
+          <Link underline="hover" href="/catalog">
+            <Typography letterSpacing=".8px">Mother's Day</Typography>
+          </Link>
+          <Link underline="hover" href="/sale">
+            <Typography letterSpacing=".8px">Sale</Typography>
+          </Link>
+          <Link underline="hover" href="/sale">
+            <Typography letterSpacing=".8px">Mother's Day</Typography>
+          </Link>
         </Box>
 
         {/* ICONS */}
