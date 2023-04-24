@@ -123,12 +123,15 @@ const SignIn = () => {
             Submit
           </Button>
         </FormControl>
-
+          
+        {/* Alert dialog for failed login */}
         {error && (
-          <Alert mt="10px" severity="error">
+          <Box marginTop="10px">
+          <Alert  severity="error">
             <AlertTitle>Error</AlertTitle>
             Error Logging In — <strong>check your credentials!</strong>
           </Alert>
+          </Box>
         )}
 
         <Link
