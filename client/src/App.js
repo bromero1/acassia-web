@@ -21,6 +21,7 @@ import { getToken } from "./helpers";
 import Profile from "./scenes/profile/Profile";
 import Account from "./scenes/account/Account";
 import Register from "./scenes/Register";
+import SearchBar from "./scenes/global/SearchBar";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -57,6 +58,7 @@ function App() {
               path="/account"
               element={getToken() ? <Account /> : <Navigate to="/signin" />}
             />
+            <Route path="/search" element={<SearchBar />} />
           </Routes>
           <Subscribe />
           <Footer />

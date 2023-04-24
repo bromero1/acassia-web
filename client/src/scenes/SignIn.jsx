@@ -7,6 +7,8 @@ import {
   Typography,
   Card,
   Link,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +21,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -51,10 +53,12 @@ const SignIn = () => {
         //setUser
         setUser(data.user);
         navigate("/", { replace: true });
+        window.location.reload(false);
       }
     } catch (error) {
       console.log("Error Logging in: ");
       console.log(error);
+      setError(true);
     } finally {
       setIsLoading(false);
     }
@@ -65,8 +69,8 @@ const SignIn = () => {
         display="flex"
         flexDirection="column"
         width="300px"
-        minHeight="50vh"
-        mt="200px"
+        minHeight="100%"
+        mt="100px"
         ml="auto"
         mr="auto"
       >
@@ -113,12 +117,19 @@ const SignIn = () => {
               color: "white",
               "&:hover": { backgroundColor: shades.primary[400] },
               letterSpacing: "2px",
-              fontSize: ".8rem"
+              fontSize: ".8rem",
             }}
           >
             Submit
           </Button>
         </FormControl>
+
+        {error && (
+          <Alert mt="10px" severity="error">
+            <AlertTitle>Error</AlertTitle>
+            Error Logging In — <strong>check your credentials!</strong>
+          </Alert>
+        )}
 
         <Link
           underline="none"

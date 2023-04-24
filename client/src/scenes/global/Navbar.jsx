@@ -89,14 +89,13 @@ const Navbar = () => {
           alignItems="center"
           justifyContent="space-evenly"
           width="40%"
-         >
-          <Typography >Mother's Day</Typography>
-          <Typography >Link</Typography>
-          <Typography >Sale</Typography>
-          <Typography >Link</Typography>
-          <Typography >Link</Typography>
-          <Typography >Link</Typography>
-
+        >
+          <Typography>Mother's Day</Typography>
+          <Typography>Link</Typography>
+          <Typography>Sale</Typography>
+          <Typography>Link</Typography>
+          <Typography>Link</Typography>
+          <Typography>Link</Typography>
         </Box>
 
         {/* ICONS */}
@@ -108,7 +107,11 @@ const Navbar = () => {
           zIndex="2"
         >
           {/* search button ----------------------- */}
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              navigate("/search");
+            }}
+          >
             <SearchIcon />
           </IconButton>
 
