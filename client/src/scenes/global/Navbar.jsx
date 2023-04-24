@@ -91,16 +91,24 @@ const Navbar = () => {
           width="40%"
         >
           <Link underline="hover" href="/catalog">
-            <Typography letterSpacing=".8px">Shop Flowers</Typography>
+            <Typography letterSpacing=".8px" fontWeight="medium" color="black">
+              Shop Flowers
+            </Typography>
           </Link>
           <Link underline="hover" href="/catalog">
-            <Typography letterSpacing=".8px">Mother's Day</Typography>
+            <Typography letterSpacing=".8px" fontWeight="medium" color="black">
+              Mother's Day
+            </Typography>
           </Link>
           <Link underline="hover" href="/sale">
-            <Typography letterSpacing=".8px">Sale</Typography>
+            <Typography letterSpacing=".8px" fontWeight="medium" color="black">
+              Sale
+            </Typography>
           </Link>
           <Link underline="hover" href="/sale">
-            <Typography letterSpacing=".8px">Mother's Day</Typography>
+            <Typography letterSpacing=".8px" fontWeight="medium" color="black">
+              Occasion
+            </Typography>
           </Link>
         </Box>
 
