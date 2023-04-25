@@ -37,22 +37,18 @@ const links = [
   { title: "Shop Catalog", link: "/catalog" },
   { title: "Mother's Day", link: "/mothersday" },
   { title: "Sale", link: "/sale" },
-  { title: "Mother's Day", link: "/mothersday" },
-  { title: "Shop Catalog", link: "/catalog" },
-  { title: "Mother's Day", link: "/mothersday" },
-  { title: "Mother's Day", link: "/mothersday" },
-  { title: "Shop Catalog", link: "/catalog" },
+  { title: "Account", link: "/account" },
 ];
 
 const NavsideBar = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const cart = useSelector((state) => state.cart.cart);
   const isMenuOpen = useSelector((state) => state.cart.isMenuOpen);
-
+  console.log(isMenuOpen);
   const dispatch = useDispatch();
   return (
     <Box //Overlay
-      display={!isMenuOpen ? "block" : "none"}
+      display={isMenuOpen ? "block" : "none"}
       sx={{ backgroundColor: "rgba(0,0,0, .3)", backdropFilter: "blur(4px)" }}
       position="fixed"
       zIndex="99"
@@ -73,6 +69,11 @@ const NavsideBar = () => {
         <Box padding="30px" overflow="auto" height="100%">
           {/* HEADER */}
           <FlexBox mb="15px">
+            <Box display="flex" alignItems="flex-end">
+            <IconButton onClick={() => dispatch(setIsMenuOpen({}))}>
+              <CloseIcon />
+            </IconButton>
+            </Box>
             <Typography
               variant="h4"
               color="primary"
@@ -80,9 +81,6 @@ const NavsideBar = () => {
             >
               Acassia Flowers
             </Typography>
-            <IconButton onClick={() => dispatch(setIsMenuOpen({}))}>
-              <CloseIcon />
-            </IconButton>
           </FlexBox>
 
           <Box>
