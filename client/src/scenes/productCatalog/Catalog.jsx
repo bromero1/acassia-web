@@ -50,7 +50,7 @@ const Catalog = () => {
               Home
             </Link>
             <Link underline="hover" color="inherit" href="/">
-              MUI
+              Catalog
             </Link>
           </Breadcrumbs>
         </Grid>
