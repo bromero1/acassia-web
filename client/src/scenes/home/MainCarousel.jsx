@@ -28,50 +28,50 @@ const MainCarousel = () => {
       // ARROW BUTTONS FOR SLIDESHOW
       // 
       // ---------------------------
-      renderArrowPrev={(onClickHandler, hasPrev, label) => (
-        <IconButton
-          onClick={onClickHandler}
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "0",
-            color: "white",
-            padding: "5px",
-            zIndex: "10",
-          }}
-        >
-          <NavigateBeforeIcon
-            sx={{
-              fontSize: 40,
-              color: shades.primary[600],
-              backgroundColor: shades.primary[100],
-              borderRadius: "50%",
-            }}
-          />
-        </IconButton>
-      )}
-      renderArrowNext={(onClickHandler, hasNext, label) => (
-        <IconButton
-          onClick={onClickHandler}
-          sx={{
-            position: "absolute",
-            top: "50%",
-            right: "0",
-            color: "white",
-            padding: "5px",
-            zIndex: "10",
-          }}
-        >
-          <NavigateNextIcon
-            sx={{
-              fontSize: 40,
-              color: shades.primary[600],
-              backgroundColor: shades.primary[100],
-              borderRadius: "50%",
-            }}
-          />
-        </IconButton>
-      )}
+      // renderArrowPrev={(onClickHandler, hasPrev, label) => (
+      //   <IconButton
+      //     onClick={onClickHandler}
+      //     sx={{
+      //       position: "absolute",
+      //       top: "50%",
+      //       left: "0",
+      //       color: "white",
+      //       padding: "5px",
+      //       zIndex: "10",
+      //     }}
+      //   >
+      //     <NavigateBeforeIcon
+      //       sx={{
+      //         fontSize: 40,
+      //         color: shades.primary[600],
+      //         backgroundColor: shades.primary[100],
+      //         borderRadius: "50%",
+      //       }}
+      //     />
+      //   </IconButton>
+      // )}
+      // renderArrowNext={(onClickHandler, hasNext, label) => (
+      //   <IconButton
+      //     onClick={onClickHandler}
+      //     sx={{
+      //       position: "absolute",
+      //       top: "50%",
+      //       right: "0",
+      //       color: "white",
+      //       padding: "5px",
+      //       zIndex: "10",
+      //     }}
+      //   >
+      //     <NavigateNextIcon
+      //       sx={{
+      //         fontSize: 40,
+      //         color: shades.primary[600],
+      //         backgroundColor: shades.primary[100],
+      //         borderRadius: "50%",
+      //       }}
+      //     />
+      //   </IconButton>
+      // )}
     >
 
       {/* CAROUSEL IMAGES INSERTED HERE. READ IN FROM assets */}
