@@ -70,9 +70,9 @@ const NavsideBar = () => {
           {/* HEADER */}
           <FlexBox mb="15px">
             <Box display="flex" alignItems="flex-end">
-            <IconButton onClick={() => dispatch(setIsMenuOpen({}))}>
-              <CloseIcon />
-            </IconButton>
+              <IconButton onClick={() => dispatch(setIsMenuOpen({}))}>
+                <CloseIcon />
+              </IconButton>
             </Box>
             <Typography
               variant="h4"
@@ -93,6 +93,7 @@ const NavsideBar = () => {
                       underline="none"
                       href={link.link}
                       color="black"
+                      onClick={() => dispatch(setIsMenuOpen(false))}
                     >
                       {link.title}
                     </StyledLink>
