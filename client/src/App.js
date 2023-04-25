@@ -22,6 +22,7 @@ import Profile from "./scenes/profile/Profile";
 import Account from "./scenes/account/Account";
 import Register from "./scenes/Register";
 import SearchBar from "./scenes/global/SearchBar";
+import NavsideBar from "./scenes/global/NavsideBar";
 
 // React Router can start from top of page
 const ScrollToTop = () => {
@@ -63,6 +64,7 @@ function App() {
           <Subscribe />
           <Footer />
           <CartMenu />
+          <NavsideBar />
         </BrowserRouter>
       </AuthProvider>
     </div>

@@ -2,11 +2,19 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Badge, Box, IconButton, Link, Menu, MenuItem } from "@mui/material";
+import {
+  Badge,
+  Box,
+  IconButton,
+  Link,
+  Menu,
+  MenuItem,
+  useMediaQuery,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
-import { setIsCartOpen } from "../../state";
+import { setIsCartOpen, setIsMenuOpen } from "../../state";
 import logo from "../../assets/logo.svg";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
@@ -20,6 +28,8 @@ import Typography from "@mui/material/Typography";
 //   - Icons
 
 const Navbar = () => {
+  const isNonMobile = useMediaQuery("(min-width:900px)");
+
   const { user } = useAuthContext();
 
   const navigate = useNavigate();
@@ -84,8 +94,9 @@ const Navbar = () => {
         </Box>
 
         {/* MENU ITEMS */}
+        
         <Box
-          display="flex"
+          display={isNonMobile? "flex": "none"}
           alignItems="center"
           justifyContent="space-evenly"
           width="40%"
@@ -128,11 +139,13 @@ const Navbar = () => {
           >
             <SearchIcon />
           </IconButton>
-
+          
+          
           {/* account button -----------------------*/}
-          <IconButton onClick={handleMenu}>
+          {isNonMobile && (
+          <IconButton onClick={handleMenu} > 
             <PersonIcon />
-          </IconButton>
+          </IconButton> )}
           <Menu
             id="menu-appbar"
             anchorEl={anchorEl}
@@ -198,9 +211,11 @@ const Navbar = () => {
           </IconButton>
 
           {/* menu button */}
-          {/* <IconButton>
-            <MenuIcon />
-          </IconButton> */}
+          {!isNonMobile && (
+            <IconButton onClick={() => dispatch(setIsMenuOpen())}>
+              <MenuIcon />
+            </IconButton>
+          )}
         </Box>
       </Box>
     </Box>
