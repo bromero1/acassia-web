@@ -1,7 +1,5 @@
 "use strict";
-
-const { HOST } = require("../../../../../client/src/constant");
-
+const HOST = "https://moldy-tough-waste.strapiapp.com";
 const stripe = require("stripe")("sk_test_51MeM66GuAAu0dPWHgLUbUK84i8U8NUksVPvpZ7i3XxcoxQGgbjr25CLb4MVmY8FIGz1up5HO3Da0CErfiMHhRcgl00Xb8mc2zI");
 
 /**
