@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscribers",
+  "info": {
+    "singularName": "subscriber",
+    "pluralName": "subscribers",
+    "displayName": "Subscribers",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subscriberEmail": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "banned": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
