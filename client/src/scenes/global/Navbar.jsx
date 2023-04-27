@@ -133,6 +133,7 @@ const Navbar = () => {
         >
           {/* search button ----------------------- */}
           <IconButton
+            aria-label="Search for products"
             onClick={() => {
               navigate("/search");
             }}
@@ -143,7 +144,7 @@ const Navbar = () => {
           
           {/* account button -----------------------*/}
           {isNonMobile && (
-          <IconButton onClick={handleMenu} > 
+          <IconButton onClick={handleMenu} aria-label="My Account"> 
             <PersonIcon />
           </IconButton> )}
           <Menu
@@ -187,7 +188,8 @@ const Navbar = () => {
           </Menu>
 
           {/* cart button ------------------------- */}
-          <IconButton onClick={() => dispatch(setIsCartOpen())}>
+          <IconButton onClick={() => dispatch(setIsCartOpen())}
+          aria-label="Shopping Cart">
             <Badge
               badgeContent={cart.length}
               color="secondary"
@@ -212,7 +214,8 @@ const Navbar = () => {
 
           {/* menu button */}
           {!isNonMobile && (
-            <IconButton onClick={() => dispatch(setIsMenuOpen())}>
+            <IconButton onClick={() => dispatch(setIsMenuOpen())}
+            aria-label="Open Menu">
               <MenuIcon />
             </IconButton>
           )}

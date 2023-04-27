@@ -54,6 +54,8 @@ const Footer = () => {
                 "_blank"
               )
             }
+            aria-label="Link to Facebook profile"
+
 
             // sx={{ "&:hover": { color: "green" } }}
           >
@@ -64,6 +66,7 @@ const Footer = () => {
 
           {/* Instagram Icon ------- */}
           <IconButton
+            aria-label="Link to Instagram Profile"
             onClick={() =>
               window.open(
                 "https://www.instagram.com/acassiaflowers/?hl=en",
@@ -84,6 +87,8 @@ const Footer = () => {
           {/* WhatsApp Icon --------- */}
           <IconButton
             onClick={() => window.open("https://wa.me/6174069725", "_blank")}
+            aria-label="Contact on WhatsApp"
+
           >
             <WhatsAppIcon
               sx={{ fontSize: "2rem", "&:hover": { color: "#25D366" } }}

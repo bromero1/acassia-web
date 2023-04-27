@@ -7,6 +7,7 @@ import { shades } from "../../theme";
 import { addToCart } from "../../state";
 import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { API, HOST } from "../../constant";
 
 const ItemDetails = () => {
   // Gets the item id that is passed to the route
@@ -17,7 +18,7 @@ const ItemDetails = () => {
 
   const getItem = async () => {
     const response = await fetch(
-      `http://192.168.0.63:1337/api/items/${itemId}?populate=image`,
+      `${API}/items/${itemId}?populate=image`,
       {
         method: "GET",
       }
@@ -42,7 +43,7 @@ const ItemDetails = () => {
             alt={item.name}
             width="100%"
             height="100%"
-            src={`http://192.168.0.63:1337${item?.attributes?.image?.data?.attributes?.url}`}
+            src={`${HOST}${item?.attributes?.image?.data?.attributes?.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>

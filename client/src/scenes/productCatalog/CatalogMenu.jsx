@@ -5,19 +5,21 @@ import {
   Divider,
   Typography,
   FormControlLabel,
+  useMediaQuery
 } from "@mui/material";
 
-const handleClearClick = () => {
+const handleClearClick = () => {};
 
-}
+const CatalogMenu = () => {
+  const isNonMobile = useMediaQuery("(min-width: 900px)");
 
-const CatalogMenu = (isNonMobile) => {
   return (
     <Box
       width="100%"
-      height="500px"
+      height={isNonMobile ? "300px" : "50px"}
       border="2px solid #ECECEC"
       borderRadius="10px"
+      // backgroundColor={isNonMobile? "red" : "green"}
     >
       <Box display="flex" m="15px 15px" justifyContent="space-between">
         <Typography fontSize="24px">Filter</Typography>
@@ -34,7 +36,11 @@ const CatalogMenu = (isNonMobile) => {
 
       <Box width="100%" display="flex" flexDirection="column">
         <Box display="flex" flexDirection="column" m="10px 15px">
-          <FormControlLabel control={<Checkbox />} labelPlacement="end" label="Flowers" />
+          <FormControlLabel
+            control={<Checkbox />}
+            labelPlacement="end"
+            label="Flowers"
+          />
           <FormControlLabel control={<Checkbox />} label="Bouquet" />
           <FormControlLabel control={<Checkbox />} label="Test" />
           <FormControlLabel control={<Checkbox />} label="Test" />

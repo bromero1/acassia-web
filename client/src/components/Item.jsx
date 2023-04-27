@@ -63,11 +63,13 @@ const Item = ({ item, width }) => {
               backgroundColor={shades.neutral[100]}
               borderRadius="3px"
             >
-              <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
+              <IconButton onClick={() => setCount(Math.max(count - 1, 1))}
+              aria-label="Decrease item count">
                 <RemoveIcon />
               </IconButton>
               <Typography color={shades.primary[300]}>{count}</Typography>
-              <IconButton onClick={() => setCount(count + 1)}>
+              <IconButton onClick={() => setCount(count + 1)} 
+              aria-label="Increase item count">
                 <AddIcon />
               </IconButton>
             </Box>
