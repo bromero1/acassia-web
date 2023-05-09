@@ -46,7 +46,7 @@ const Checkout = () => {
   const isSecondStep = currentStep === 1;
 
   const handleFormSubmit = async (values, actions) => {
-    console.log("inside: handleFormSubmit");
+    // console.log("inside: handleFormSubmit");
     setStep(currentStep + 1);
     
 

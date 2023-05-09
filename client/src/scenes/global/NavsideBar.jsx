@@ -44,7 +44,7 @@ const NavsideBar = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const cart = useSelector((state) => state.cart.cart);
   const isMenuOpen = useSelector((state) => state.cart.isMenuOpen);
-  console.log(isMenuOpen);
+  // console.log(isMenuOpen);
   const dispatch = useDispatch();
   return (
     <Box //Overlay

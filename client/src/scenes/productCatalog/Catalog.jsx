@@ -28,7 +28,7 @@ const Catalog = () => {
     const itemsJson = await items.json();
     dispatch(setItems(itemsJson.data));
     // setItems(itemsJson);
-    console.log(itemsJson);
+    // console.log(itemsJson);
   }
 
   useEffect(() => {
