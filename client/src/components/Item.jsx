@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton, Box, Typography, useTheme, Button, useMediaQuery } from "@mui/material";
+import {
+  IconButton,
+  Box,
+  Typography,
+  useTheme,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../theme";
@@ -39,11 +46,15 @@ const Item = ({ item, width }) => {
       >
         <img
           alt={item.name}
+          // width="320px"
+          // height="auto"
+
+          height="380px"
           width="300px"
-          height="400px"
-          src={`${url}`}
+          
+          src={`http://localhost:1337${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: "pointer", objectFit: "contain" }}
+          style={{ cursor: "pointer",  maxWidth:"100%" }}
         />
 
         {/* OVERLAY FOR ADDING TO CART ----- */}
@@ -63,22 +74,24 @@ const Item = ({ item, width }) => {
               backgroundColor={shades.neutral[100]}
               borderRadius="3px"
             >
-              <IconButton onClick={() => setCount(Math.max(count - 1, 1))}
-              aria-label="Decrease item count">
+              <IconButton
+                onClick={() => setCount(Math.max(count - 1, 1))}
+                aria-label="Decrease item count"
+              >
                 <RemoveIcon />
               </IconButton>
               <Typography color={shades.primary[300]}>{count}</Typography>
-              <IconButton onClick={() => setCount(count + 1)} 
-              aria-label="Increase item count">
+              <IconButton
+                onClick={() => setCount(count + 1)}
+                aria-label="Increase item count"
+              >
                 <AddIcon />
               </IconButton>
             </Box>
 
             {/* ADD TO CART BUTTON OVERLAY */}
             <Button
-              onClick={() => dispatch(addToCart(
-                { item: { ...item, count } 
-                  }))}
+              onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
               sx={{
                 backgroundColor: shades.primary[300],
                 color: "white",

@@ -37,7 +37,7 @@ const Catalog = () => {
 
   return (
     <Box width="95%" m="40px auto 80px auto">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} columnSpacing={2}>
         <Grid item xs={12} md={3} mb="20px">
           {/* <Typography variant="h6">Home / Products</Typography> */}
           <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
