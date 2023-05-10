@@ -49,7 +49,6 @@ const Checkout = () => {
     // console.log("inside: handleFormSubmit");
     setStep(currentStep + 1);
     
-
     // this copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
       actions.setFieldValue("shippingAddress", {
@@ -59,37 +58,40 @@ const Checkout = () => {
     }
     //After billing and shipping is entered
     if (isSecondStep) {
-      makePayment(values);
+      // makePayment(values);
     }
 
     actions.setTouched({});
   };
 
-  async function makePayment(values) {
-    // 
-    const requestBody = {
-      userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
-      email: values.email,
-      products: cart.map(({ id, count, price }) => ({
-        id,
-        count,
-        price, 
-      }))};
+    async function makePayment(values) {
+      
+    }
+  // async function makePayment(values) {
+  //   // 
+  //   const requestBody = {
+  //     userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
+  //     email: values.email,
+  //     products: cart.map(({ id, count, price }) => ({
+  //       id,
+  //       count,
+  //       price, 
+  //     }))};
 
-    const response = await fetch(`${HOST}/api/orders`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestBody),
-    });
+  //   const response = await fetch(`${HOST}/api/orders`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(requestBody),
+  //   });
 
-    const stripe = await stripePromise;
-    const session = await response.json();
-    await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-  }
+  //   const stripe = await stripePromise;
+  //   const session = await response.json();
+  //   await stripe.redirectToCheckout({
+  //     sessionId: session.id,
+  //   });
+  // }
   return (
-    <Box width="80%" m="40px auto">
+    <Box width="80%" m="40px auto" maxWidth={'800px'}>
       <Stepper activeStep={currentStep}>
         <Step>
           <StepLabel>Billing</StepLabel>
@@ -166,6 +168,7 @@ const Checkout = () => {
                   type="submit"
                   color="primary"
                   variant="contained"
+                  id={isSecondStep? "payButton" : "next"}
                   sx={{
                     backgroundColor: shades.primary[200],
                     boxShadow: "none",
@@ -173,7 +176,7 @@ const Checkout = () => {
                     borderRadius: 0,
                     padding: "15px 40px",
                   }}
-                  
+                 
                 >
                   {!isSecondStep ? "Next" : "Place Order"}
                 </Button>

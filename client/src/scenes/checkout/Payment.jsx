@@ -1,7 +1,10 @@
 import { Typography, TextField, Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import MaskedInput from "react-text-mask";
 
 const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
+  const ccRef = useRef();
+
   useEffect(() => {
     window.CollectJS.configure({
       variant: "inline",
@@ -12,7 +15,7 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
       },
       fields: {
         ccnumber: {
-          placeholder: "CC Number",
+          // placeholder: "CC Number",
           selector: "#ccnumber",
         },
         ccexp: {
@@ -64,17 +67,24 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
 
         <TextField
           fullWidth
-          type="text"
-          id="ccnumber"
+          // id="ccnumber"
           label="Credit Card Number"
           sx={{ gridColumn: "span 4", marginBottom: "15px" }}
         />
+
+        <Box><div id="ccexp"></div></Box>
+        <Box><div id="cvv"></div></Box>
+        <Box><div id="ccnumber"></div></Box>
+
+        
+       
 
         <TextField
           fullWidth
           type="text"
           id="ccexp"
           label="Expiration Date"
+          auto-complete="cc-exp"
           sx={{ gridColumn: "span 2", marginBottom: "15px" }}
         />
 
