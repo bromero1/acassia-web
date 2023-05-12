@@ -7,7 +7,7 @@ import {
   Divider,
   Link,
 } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setItems } from "../../state";
 import CatalogGrid from "./CatalogGrid";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
+  const [filters, setFilter] = useState();
 
   async function getItems() {
     const items = await fetch(`${HOST}/api/items?populate=image`, {
@@ -44,7 +45,7 @@ const Catalog = () => {
             <Link
               underline="hover"
               color={shades.primary[300]}
-              // href="/material-ui/getting-started/installation/"
+              href="/"
               // onClick={handleClick}
             >
               Home

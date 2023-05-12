@@ -1,7 +1,44 @@
 import { Typography, TextField, Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+//import MaskedInput from "react-text-mask";
 
 const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
+  const ccRef = useRef();
+
+  useEffect(() => {
+    window.CollectJS.configure({
+      variant: "inline",
+      styleSniffer: true,
+      callback: (token) => {
+        console.log(token);
+        finishSubmit(token);
+      },
+      fields: {
+        ccnumber: {
+          // placeholder: "CC Number",
+          selector: "#ccnumber",
+        },
+        ccexp: {
+          placeholder: "CC Expiration",
+          selector: "#ccexp",
+        },
+        cvv: {
+          placeholder: "CVV",
+          selector: "#cvv",
+        },
+      },
+    });
+  });
+
+  // const finishSubmit(response) {
+  //   const { isSubmitting, alertMessage, ...formData } = { ...this.state };
+  //   formData.token = response.token;
+  //   console.log(formData);
+  //   this.setState({ isSubmitting: false, alertMessage: 'The form was submitted. Check the console to see the output data.' });
+  // }
+
+  const finishSubmit = (response) => {};
+
   return (
     <Box m="30px 0">
       {/* CONTACT INFO */}
@@ -33,7 +70,41 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
           name="phoneNumber"
           error={!!touched.phoneNumber && !!errors.phoneNumber}
           helperText={touched.phoneNumber && errors.phoneNumber}
-          sx={{ gridColumn: "span 4" }}
+          sx={{ gridColumn: "span 4", marginBottom: "15px" }}
+        />
+
+        <TextField
+          fullWidth
+          // id="ccnumber"
+          // label="Credit Card Number"
+          sx={{ gridColumn: "span 4", marginBottom: "15px" }}
+        />
+
+        <Box>
+          <div id="ccnumber"></div>
+        </Box>
+        <Box>
+          <div id="ccexp"></div>
+        </Box>
+        <Box>
+          <div id="cvv"></div>
+        </Box>
+
+        <TextField
+          fullWidth
+          type="text"
+          id="ccexp"
+          label="Expiration Date"
+          auto-complete="cc-exp"
+          sx={{ gridColumn: "span 2", marginBottom: "15px" }}
+        />
+
+        <TextField
+          fullWidth
+          type="text"
+          id="cvv"
+          label="CVV Number"
+          sx={{ gridColumn: "span 2" }}
         />
       </Box>
     </Box>
