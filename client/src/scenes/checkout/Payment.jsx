@@ -1,6 +1,6 @@
 import { Typography, TextField, Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import MaskedInput from "react-text-mask";
+//import MaskedInput from "react-text-mask";
 
 const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
   const ccRef = useRef();
@@ -30,7 +30,14 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
     });
   });
 
-  const finishSubmit = () => {};
+  // const finishSubmit(response) {
+  //   const { isSubmitting, alertMessage, ...formData } = { ...this.state };
+  //   formData.token = response.token;
+  //   console.log(formData);
+  //   this.setState({ isSubmitting: false, alertMessage: 'The form was submitted. Check the console to see the output data.' });
+  // }
+
+  const finishSubmit = (response) => {};
 
   return (
     <Box m="30px 0">
@@ -68,16 +75,19 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
         <TextField
           fullWidth
           // id="ccnumber"
-          label="Credit Card Number"
+          // label="Credit Card Number"
           sx={{ gridColumn: "span 4", marginBottom: "15px" }}
         />
 
-        <Box><div id="ccexp"></div></Box>
-        <Box><div id="cvv"></div></Box>
-        <Box><div id="ccnumber"></div></Box>
-
-        
-       
+        <Box>
+          <div id="ccnumber"></div>
+        </Box>
+        <Box>
+          <div id="ccexp"></div>
+        </Box>
+        <Box>
+          <div id="cvv"></div>
+        </Box>
 
         <TextField
           fullWidth

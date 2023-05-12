@@ -48,7 +48,7 @@ const Checkout = () => {
   const handleFormSubmit = async (values, actions) => {
     // console.log("inside: handleFormSubmit");
     setStep(currentStep + 1);
-    
+
     // this copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
       actions.setFieldValue("shippingAddress", {
@@ -59,23 +59,30 @@ const Checkout = () => {
     //After billing and shipping is entered
     if (isSecondStep) {
       // makePayment(values);
+      // this.setState({ isSubmitting: true });
+      window.CollectJS.startPaymentRequest();
     }
 
     actions.setTouched({});
   };
 
-    async function makePayment(values) {
-      
-    }
+  // const finishSubmit(response) {
+  //   const { isSubmitting, alertMessage, ...formData } = { ...this.state };
+  //   formData.token = response.token;
+  //   console.log(formData);
+  //   this.setState({ isSubmitting: false, alertMessage: 'The form was submitted. Check the console to see the output data.' });
+  // }
+
+  async function makePayment(values) {}
   // async function makePayment(values) {
-  //   // 
+  //   //
   //   const requestBody = {
   //     userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
   //     email: values.email,
   //     products: cart.map(({ id, count, price }) => ({
   //       id,
   //       count,
-  //       price, 
+  //       price,
   //     }))};
 
   //   const response = await fetch(`${HOST}/api/orders`, {
@@ -91,7 +98,7 @@ const Checkout = () => {
   //   });
   // }
   return (
-    <Box width="80%" m="40px auto" maxWidth={'800px'}>
+    <Box width="80%" m="40px auto" maxWidth={"800px"}>
       <Stepper activeStep={currentStep}>
         <Step>
           <StepLabel>Billing</StepLabel>
@@ -115,7 +122,6 @@ const Checkout = () => {
             handleSubmit,
             setFieldValue,
           }) => (
-            
             <form onSubmit={handleSubmit}>
               {isFirstStep && (
                 <Shipping
@@ -168,7 +174,7 @@ const Checkout = () => {
                   type="submit"
                   color="primary"
                   variant="contained"
-                  id={isSecondStep? "payButton" : "next"}
+                  id={isSecondStep ? "payButton" : "next"}
                   sx={{
                     backgroundColor: shades.primary[200],
                     boxShadow: "none",
@@ -176,7 +182,6 @@ const Checkout = () => {
                     borderRadius: 0,
                     padding: "15px 40px",
                   }}
-                 
                 >
                   {!isSecondStep ? "Next" : "Place Order"}
                 </Button>
