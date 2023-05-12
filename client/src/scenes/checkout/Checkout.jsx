@@ -58,7 +58,7 @@ const Checkout = () => {
     }
     //After billing and shipping is entered
     if (isSecondStep) {
-      makePayment(values);
+      // makePayment(values);
       // this.setState({ isSubmitting: true });
       window.CollectJS.startPaymentRequest();
     }
@@ -182,7 +182,6 @@ const Checkout = () => {
                     borderRadius: 0,
                     padding: "15px 40px",
                   }}
-                 
                 >
                   {!isSecondStep ? "Next" : "Place Order"}
                 </Button>

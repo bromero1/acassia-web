@@ -13,6 +13,7 @@ const handleClearClick = () => {
 };
 
 const CatalogMenu = ({setFilters}) => {
+const CatalogMenu = ({setFilters}) => {
   const isNonMobile = useMediaQuery("(min-width: 900px)");
 
   return (
@@ -23,7 +24,9 @@ const CatalogMenu = ({setFilters}) => {
       borderRadius="10px"
       // backgroundColor={isNonMobile? "red" : "green"}
       overflow="scroll"
+      overflow="scroll"
     >
+      <Box display="flex" m="15px 15px" justifyContent="space-between" >
       <Box display="flex" m="15px 15px" justifyContent="space-between" >
         <Typography fontSize="24px">Filter</Typography>
         <Button
