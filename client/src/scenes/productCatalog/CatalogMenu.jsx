@@ -5,14 +5,23 @@ import {
   Divider,
   Typography,
   FormControlLabel,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material";
 
+const filterList = ["Bouquet", "Flowers", "Test", "Test1", "Assortments"];
+
 const handleClearClick = () => {
+  console.log("Filters Cleared.");
   setFilters([]);
 };
 
-const CatalogMenu = ({setFilters}) => {
+const handleClick = (event) => {
+  console.log(`clicked ${event.target.value}`);
+};
+
+const setFilters = () => {};
+
+const CatalogMenu = ({ filters, setFilters }) => {
   const isNonMobile = useMediaQuery("(min-width: 900px)");
 
   return (
@@ -24,12 +33,13 @@ const CatalogMenu = ({setFilters}) => {
       // backgroundColor={isNonMobile? "red" : "green"}
       overflow="scroll"
     >
-      <Box display="flex" m="15px 15px" justifyContent="space-between" >
+      <Box display="flex" m="15px 15px" justifyContent="space-between">
         <Typography fontSize="24px">Filter</Typography>
         <Button
           variant="outlined"
           height="30px"
           sx={{ letterSpacing: "1px", fontSize: "14px" }}
+          onClick={handleClearClick}
         >
           Clear
         </Button>
@@ -39,8 +49,33 @@ const CatalogMenu = ({setFilters}) => {
 
       <Box width="100%" display="flex" flexDirection="column">
         <Box display="flex" flexDirection="column" m="10px 15px">
+
+          {filterList.map((filter) => {
+            return(
+            <FormControlLabel
+              key={filter}
+              control={
+                <Checkbox
+                  value={filter.toLowerCase()}
+                  onClick={(event) => {
+                    handleClick(event);
+                  }}
+                />
+              }
+              labelPlacement="end"
+              label={filter}
+            /> )
+          })}
+
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                value="flowers"
+                onClick={(event) => {
+                  handleClick(event);
+                }}
+              />
+            }
             labelPlacement="end"
             label="Flowers"
           />

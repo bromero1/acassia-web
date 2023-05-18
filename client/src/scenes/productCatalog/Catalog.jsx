@@ -20,7 +20,7 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
-  const [filters, setFilter] = useState();
+  const [filters, setFilters] = useState();
 
   async function getItems() {
     const items = await fetch(`${HOST}/api/items?populate=image`, {
@@ -31,6 +31,8 @@ const Catalog = () => {
     // setItems(itemsJson);
     // console.log(itemsJson);
   }
+
+
 
   useEffect(() => {
     getItems();
@@ -62,7 +64,7 @@ const Catalog = () => {
         </Grid>
 
         <Grid item xs={12} md={3}>
-          <CatalogMenu isNonMobile={isNonMobile} />
+          <CatalogMenu setFilters={setFilters} filters={filters} isNonMobile={isNonMobile} />
         </Grid>
 
         <Grid item xs={12} md={9}>
