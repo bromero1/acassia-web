@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 const handleClearClick = () => {
-  setFilters([]);
+  //setFilters([]);
 };
 
 const CatalogMenu = ({setFilters}) => {
