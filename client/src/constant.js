@@ -3,8 +3,8 @@ export const AUTH_TOKEN = "authToken";
 export const BEARER = "Bearer";
 
 // Cloud Endpoints
-export const API = "https://moldy-tough-waste.strapiapp.com/api";
-export const HOST = "https://moldy-tough-waste.strapiapp.com";
+export const API = "https://api.acassiaflowers.shop/api";
+export const HOST = "https://api.acassiaflowers.shop";
 
 // Local Endpoints for Dev
 // export const API = "http://localhost:1337/api";
