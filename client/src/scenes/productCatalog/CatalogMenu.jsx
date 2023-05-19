@@ -5,15 +5,14 @@ import {
   Divider,
   Typography,
   FormControlLabel,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material";
 
 const handleClearClick = () => {
   //setFilters([]);
 };
 
-const CatalogMenu = ({setFilters}) => {
-const CatalogMenu = ({setFilters}) => {
+const CatalogMenu = ({ setFilters }) => {
   const isNonMobile = useMediaQuery("(min-width: 900px)");
 
   return (
@@ -26,8 +25,7 @@ const CatalogMenu = ({setFilters}) => {
       overflow="scroll"
       overflow="scroll"
     >
-      <Box display="flex" m="15px 15px" justifyContent="space-between" >
-      <Box display="flex" m="15px 15px" justifyContent="space-between" >
+      <Box display="flex" m="15px 15px" justifyContent="space-between">
         <Typography fontSize="24px">Filter</Typography>
         <Button
           variant="outlined"
