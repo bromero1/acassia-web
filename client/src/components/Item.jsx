@@ -13,6 +13,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../theme";
 import { addToCart } from "../state";
 import { useNavigate } from "react-router-dom";
+import { HOST } from "../constant";
 
 const Item = ({ item, width }) => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
@@ -52,7 +53,7 @@ const Item = ({ item, width }) => {
           height="380px"
           width="300px"
           
-          src={`http://localhost:1337${url}`}
+          src={`${HOST}${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer",  maxWidth:"100%" }}
         />
