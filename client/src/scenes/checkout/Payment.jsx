@@ -1,6 +1,7 @@
 import { Typography, TextField, Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 //import MaskedInput from "react-text-mask";
+import "./collectStyling.css"
 
 const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
   const ccRef = useRef();
@@ -8,7 +9,7 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
   useEffect(() => {
     window.CollectJS.configure({
       variant: "inline",
-      styleSniffer: true,
+      styleSniffer: false,
       callback: (token) => {
         console.log(token);
         finishSubmit(token);
@@ -73,24 +74,29 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
           sx={{ gridColumn: "span 4", marginBottom: "15px" }}
         />
 
-        <TextField
+        {/* <TextField
           fullWidth
           // id="ccnumber"
           // label="Credit Card Number"
           sx={{ gridColumn: "span 4", marginBottom: "15px" }}
-        />
+        /> */}
 
-        <Box>
-          <div id="ccnumber"></div>
-        </Box>
-        <Box>
-          <div id="ccexp"></div>
-        </Box>
-        <Box>
-          <div id="cvv"></div>
+        <Box mb="15px"  sx={{
+          // borderRadius: "4px", height: "3.4375em"
+        }}>
+          <div className="payment-field" id="ccnumber"></div>
         </Box>
 
-        <TextField
+        <Box mb="15px" display={'flex'}>
+          <div className="payment-field" id="ccexp"></div>
+          <div className="payment-field" id="cvv"></div>
+        </Box>
+
+        <Box>
+          
+        </Box>
+
+        {/* <TextField
           fullWidth
           type="text"
           id="ccexp"
@@ -105,7 +111,7 @@ const Payment = ({ values, touched, errors, handleBlur, handleChange }) => {
           id="cvv"
           label="CVV Number"
           sx={{ gridColumn: "span 2" }}
-        />
+        /> */}
       </Box>
     </Box>
   );

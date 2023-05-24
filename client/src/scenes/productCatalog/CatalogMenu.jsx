@@ -23,7 +23,6 @@ const CatalogMenu = ({ setFilters }) => {
       borderRadius="10px"
       // backgroundColor={isNonMobile? "red" : "green"}
       overflow="scroll"
-      overflow="scroll"
     >
       <Box display="flex" m="15px 15px" justifyContent="space-between">
         <Typography fontSize="24px">Filter</Typography>

@@ -1,0 +1,27 @@
+/* #ccnumber{
+    border-radius: 34px;
+    height: 100%;
+}
+
+.payment-field {
+    height: "2em";
+    border-radius: 4px;
+    width: 48%;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px #dddddd;
+    font-size: 16px;
+    transition: 200ms;
+}
+
+.payment-field > input {
+    height: 100%; 
+    background-color: red;
+}
+
+input {
+    border: 5px inset #687C8D;
+    background-color: #c0c0c0;
+    color: green;
+    font-size: 25px;
+    font-family: monospace;
+    padding: 5px; } */
