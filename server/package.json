@@ -16,6 +16,7 @@
     "dotenv": "^16.0.3",
     "pg": "8.8.0",
     "strapi-plugin-responsive-image": "^1.0.1",
+    "strapi-provider-email-postmark": "^4.0.1",
     "stripe": "^11.17.0"
   },
   "author": {
