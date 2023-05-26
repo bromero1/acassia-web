@@ -10,7 +10,7 @@ module.exports = ({ env }) => ({
         defaultMessageStream: "outbound",
         defaultFrom: "bryan.romero001@umb.edu",
         defaultTo: "bryan.romero001@umb.edu",
-        defaultReplyTo: "cd514db8f144ff5548008c8142deb33e@inbound.postmarkapp.com",
+        defaultReplyTo: "cac0731fa0b48a89b6bb9d12bca81e59+aaebdbad76a9fcd14235b22844ba8f84@inbound.postmarkapp.com",
         defaultVariables: {
           sentBy: "strapi",
         },
