@@ -59,7 +59,7 @@ function App() {
               path="/account"
               element={getToken() ? <Account /> : <Navigate to="/signin" />}
             />
-            <Route path="/search" element={<SearchBar />} />
+            {/* <Route path="/search" element={<SearchBar />} /> */}
           </Routes>
           <Subscribe />
           <Footer />
