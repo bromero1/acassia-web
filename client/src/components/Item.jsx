@@ -32,7 +32,7 @@ const Item = ({ item, width }) => {
     data: {
       attributes: {
         formats: {
-          small: { url },
+          medium: { url },
         },
       },
     },
@@ -52,10 +52,15 @@ const Item = ({ item, width }) => {
 
           height="380px"
           width="300px"
-          
+
           src={`${HOST}${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: "pointer",  maxWidth:"100%" }}
+          style={{
+            cursor: "pointer",
+            maxWidth: "100%",
+            objectFit: "cover",
+            
+          }}
         />
 
         {/* OVERLAY FOR ADDING TO CART ----- */}
