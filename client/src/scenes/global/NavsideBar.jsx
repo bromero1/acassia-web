@@ -51,12 +51,12 @@ const NavsideBar = () => {
       display={isMenuOpen ? "block" : "none"}
       sx={{ backgroundColor: "rgba(0,0,0, .3)", backdropFilter: "blur(4px)" }}
       position="fixed"
-      zIndex="99"
       width="100%"
       height="100%"
       left="0"
       top="0"
       overflow="auto"
+      style={{ zIndex:"1999"}}
     >
       <Box
         position="fixed"
