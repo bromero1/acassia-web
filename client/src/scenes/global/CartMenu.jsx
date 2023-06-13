@@ -43,7 +43,7 @@ const CartMenu = () => {
       display={isCartOpen ? "block" : "none"}
       sx={{ backgroundColor: "rgba(163,136,185, .9)" }}
       position="fixed"
-      zIndex="99"
+      zIndex="199"
       width="100%"
       height="100%"
       left="0"
