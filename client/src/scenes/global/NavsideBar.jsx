@@ -35,7 +35,7 @@ const StyledLink = styled(Link)`
 
 const links = [
   { title: "Shop Catalog", link: "/catalog" },
-  { title: "Mother's Day", link: "/mothersday" },
+  { title: "Summer Collection", link: "/summer" },
   { title: "Sale", link: "/sale" },
   { title: "Account", link: "/account" },
 ];

@@ -108,7 +108,7 @@ const Navbar = () => {
           </Link>
           <Link underline="hover" href="/catalog">
             <Typography letterSpacing=".8px" fontWeight="medium" color="black">
-              Mother's Day
+              Summer Collection
             </Typography>
           </Link>
           <Link underline="hover" href="/sale">
